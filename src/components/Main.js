@@ -4,6 +4,7 @@ import '../css/Style.css';
 import Nav from './Nav';
 import MainBanner from './MainBanner';
 import MainArticles from "./MainArticles";
+import Footer from "./Footer";
 
 function Main() {
     return (
@@ -11,6 +12,7 @@ function Main() {
             <Nav />
             <MainBanner />
             <MainArticles />
+            <Footer />
         </div>
     )
 }
