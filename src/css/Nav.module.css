@@ -21,7 +21,7 @@
     font-weight: 700;
 }
 
-.menuList {
+.menu-list {
     display: flex;
     align-items: center;
     gap: 80px;
@@ -30,7 +30,7 @@
     font-weight: 500;
 }
 
-.navList {
+.nav-list {
     display: flex;
     gap: 32px;
 }
@@ -39,7 +39,9 @@
     font-size: 1.8rem;
     color: var(--gray900);
     display: flex;
+    align-items: center;
     gap: 24px;
 }
+
 
 
