@@ -2,11 +2,17 @@ import React from "react";
 import styles from '../css/Nav.module.css';
 import '../css/Style.css';
 import { Icon } from '@iconify/react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import LoginPage from './LoginPage'; // 로그인 페이지 컴포넌트
+
 
 // TODO: Link로 navItem마다 경로 설정
 function Nav() {
+
+    const toCostCalculator = () => {
+        window.location.href = '/CostCalculator.js';
+    }
+
     return (
         <div className={styles.nav}>
             <div className={styles['nav-logo']}>LOGO</div>
@@ -14,7 +20,7 @@ function Nav() {
                     <ul className={styles['nav-list']}>
                         <li className={styles['nav-item']}>자취 정보</li>
                         <li className={styles['nav-item']}>자취력 테스트</li>
-                        <li className={styles['nav-item']}>비용 계산기</li>
+                        <li className={styles['nav-item']}><Link to="/CostCalculator">비용 계산기</Link></li>
                         <li className={styles['nav-item']}>게시글</li>
                     </ul>
                 <div className={styles['icons']}>
