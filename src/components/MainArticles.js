@@ -5,7 +5,7 @@ import { Icon } from '@iconify/react';
 
 function MainArticles() {
     return (
-        <div className={styles["articlesContainer"]}>
+        <div className={styles["articles-container"]}>
             <ArticleSection title="오늘도 핫하다 핫해 🔥" />
             <ArticleSection title="나만 알기 아쉬운 꿀팁 🍯" />
             <ArticleSection title="인테리어는 어떤게 좋을까? 🛏️" />
@@ -15,13 +15,13 @@ function MainArticles() {
 
 function ArticleSection({title}) {
     return (
-        <div className={styles["articleSection"]}>
-            <div className={styles["sectionHeader"]}>
-                <div className={styles["sectionLabel"]}>  
+        <div className={styles["article-section"]}>
+            <div className={styles["section-header"]}>
+                <div className={styles["section-label"]}>  
                     {title}
                 </div>
-                <div className={styles["gotoMoreArticles"]}>
-                    <div className={styles["gotoLabel"]}>더보기</div>
+                <div className={styles["goto-more-articles"]}>
+                    <div className={styles["goto-label"]}>더보기</div>
                     <Icon icon="iconamoon:arrow-right-2-light" />
                 </div>
             </div>
@@ -39,9 +39,9 @@ function ArticleSection({title}) {
 function Article({thumbnail, title, date}) {
     return (
         <div className={styles["article"]}>
-            <div className={styles["articleThumbNail"]}>{thumbnail}</div>
-            <div className={styles["articleTitle"]}>{title}</div>
-            <div className={styles["articleDate"]}>{date}</div>
+            <div className={styles["article-thumbnail"]}>{thumbnail}</div>
+            <div className={styles["article-title"]}>{title}</div>
+            <div className={styles["article-date"]}>{date}</div>
         </div>
     );
 }
