@@ -4,7 +4,7 @@
     --primary-300: rgba(104, 167, 240, 1);
 }
 
-.articlesContainer {
+.articles-container {
     width: fit-content;
     height: fit-content;
     display: flex;
@@ -14,20 +14,20 @@
     margin: 300px auto 160px auto;
 }
 
-.articleSection {
+.article-section {
     display: flex;
     flex-direction: column;
     gap: 36px;
     margin: 0 auto;
 }
 
-.sectionHeader {
+.section-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.gotoMoreArticles {
+.goto-more-articles {
     display: flex;
     align-items: center;
     color: var(--primary-300, #68A7F0);
@@ -39,12 +39,12 @@
     cursor: pointer;
 }
 
-.gotoLabel {
+.goto-label {
     text-align: right;
     font-size: 0.9rem;
 }
 
-.sectionLabel {
+.section-label {
     color: #000;
     font-size: 2rem;
     font-style: normal;
@@ -64,14 +64,14 @@
     cursor: pointer;
 }
 
-.articleThumbNail {
+.article-thumbnail {
     width: 306px;
     height: 220px;
     border-radius: 8px;
     background: #D9D9D9;
 }
 
-.articleTitle {
+.article-title {
     color: var(--gray-900, #766565);
     font-size: 1.2rem;
     font-style: normal;
@@ -79,7 +79,7 @@
     line-height: 160%; 
 }
 
-.articleDate {
+.article-date {
     color: var(--gray-300, #C2C2C2);
     font-size: 0.8rem;
     font-style: normal;
