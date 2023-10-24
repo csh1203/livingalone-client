@@ -2,13 +2,13 @@ import React from "react";
 import '../css/Style.css';
 import Nav from './Nav';
 import Footer from "./Footer";
-import CostCalculator from "./CostCalculator";
+import MainCostCalculator from "./CostCalculator";
 
 function CostCalculatorPage() {
     return (
         <div>
             <Nav />  
-            <CostCalculator />          
+            <MainCostCalculator />          
             <Footer />
         </div>
     )
