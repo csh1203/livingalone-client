@@ -1,8 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from 'axios';
 import '../css/Style.css';
 import styles from '../css/Login.module.css'
 
 function Login() {
+    // TODO: 유효성 검사 
+    const [userId, setUserId] = useState('');
+    const [userPassword, setUserPassword] = useState('');
+
+    const handleLogin = async () => {
+        try {
+            const response = await axios.post(`http://127.0.0.1:3000/login`, {
+                userId, userPassword
+            });
+
+            console.log('로그인 성공:', response.data);
+        } catch (error) {
+            console.error('로그인 실패:', error)
+        }
+    };
+
+
     return (
         <div className={styles.main}>
             <div className={styles['main-label']}>로그인</div>   
@@ -12,15 +30,15 @@ function Login() {
                             type="text" 
                             className={styles['text-field']} 
                             placeholder="아이디를 입력하세요" 
-                            // value={username}
-                            // onChange={(e) => setUsername(e.target.value)}
+                            value={userId}
+                            onChange={e => setUserId(e.target.value)}
                         />
                     <input 
                         type="password" 
                         className={styles['text-field']} 
                         placeholder="비밀번호를 입력하세요" 
-                        // value={password}
-                        // onChange={(e) => setPassword(e.target.value)}
+                        value={userPassword}
+                        onChange={e => setUserPassword(e.target.value)}
                     />
                     <div className={styles['keep-login-checkbox']}>
                         <label className={styles['round-checkbox']}>
@@ -31,7 +49,10 @@ function Login() {
                             로그인 상태 유지
                         </label>    
                     </div>
-                    <button className={styles['login-button']}>로그인</button>
+                    <button 
+                        className={styles['login-button']}
+                        onClick={handleLogin}
+                    >로그인</button>
                 </form>
                 <div className={styles['easy-login-label']}>
                     간편하게 시작하기
