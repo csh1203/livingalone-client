@@ -2,19 +2,19 @@ main{
     width: 100%;
     height: 100%;
 }
-
-.back-img{
+.back-img-div{
     margin-top: 100px;
     width: 100%;
     height: 185px;
+    background-color: rgba(3, 108, 231, 0.1);
+    background-blend-mode: multiply;
+    object-fit: contain;
 }
-
 .category-div{
     display: flex;
     justify-content: center;
     column-gap: 16px;
 }
-
 .category{
     position: relative;
     top: -110px;
