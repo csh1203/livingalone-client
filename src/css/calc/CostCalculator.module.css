@@ -8,7 +8,7 @@ main{
     height: 185px;
     background-color: rgba(3, 108, 231, 0.1);
     background-blend-mode: multiply;
-    object-fit: contain;
+    background-size: cover;
 }
 .category-div{
     display: flex;
