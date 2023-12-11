@@ -3,7 +3,6 @@ import styles from '../../css/common/Nav.module.css';
 import '../../css/common/Style.css';
 import { Icon } from '@iconify/react';
 import { Link, useNavigate } from 'react-router-dom';
-import LoginPage from '../../pages/LoginPage'; // 로그인 페이지 컴포넌트
 
 
 // TODO: Link로 navItem마다 경로 설정
