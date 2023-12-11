@@ -1,14 +1,24 @@
 import React, { useState } from "react";
+import {useNavigate} from "react-router-dom";
 import axios from 'axios';
-import '../css/Style.css';
-import styles from '../css/Login.module.css'
+import '../../css/common/Style.css';
+import styles from '../../css/auth/Login.module.css'
 
 function Login() {
-    // TODO: 유효성 검사 
+    const movePage = useNavigate();
+
+    // TODO: 유효성 검사
     const [userId, setUserId] = useState('');
     const [userPassword, setUserPassword] = useState('');
 
     const handleLogin = async () => {
+        const req = {
+            user_id: userId,
+            user_password: userPassword
+        }
+
+        console.log(req);
+
         try {
             const response = await axios.post(`http://127.0.0.1:3000/login`, {
                 userId, userPassword
@@ -71,7 +81,7 @@ function Login() {
                         <img src="./images/auth-icon/apple.svg" className={styles['auth-icon-img']}></img>
                     </div>
                 </div>
-                <button className={styles['signin-button']}>회원가입</button>
+                <button className={styles['signin-button']} onClick={() => movePage('/join')}>회원가입</button>
                 <div className={styles['forgot-login']}>아이디 | 비밀번호를 잊으셨나요? </div>
             </div>
         </div>

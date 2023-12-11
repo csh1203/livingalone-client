@@ -1,6 +1,6 @@
 import React from 'react';
-import '../css/Style.css';
-import styles from '../css/MainArticles.module.css';
+import '../../css/common/Style.css';
+import styles from '../../css/main/MainArticles.module.css';
 import { Icon } from '@iconify/react';
 
 function MainArticles() {

@@ -6,9 +6,9 @@ import {
   Routes
 } from 'react-router-dom';
 
-import Main from "./components/Main";
-import LoginPage from "./components/LoginPage";
-import CostCalculatorPage from "./components/CostCalculatorPage";
+import Main from "./pages/Main";
+import LoginPage from "./pages/LoginPage";
+import CostCalculatorPage from "./pages/CostCalculatorPage";
 
 function App() {
   return (

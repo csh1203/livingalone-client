@@ -1,7 +1,7 @@
 import React from "react";
-import Nav from "./Nav";
-import Footer from "./Footer";
-import Login from "./Login";
+import Nav from "../components/common/Nav";
+import Footer from "../components/common/Footer";
+import Login from "../components/auth/Login";
 function LoginPage() {
     return (
         <div>
