@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import axios from 'axios';
 import '../../css/common/Style.css';
@@ -33,23 +33,28 @@ function Login() {
 
     return (
         <div className={styles.main}>
-            <div className={styles['main-label']}>로그인</div>   
+            <div className={styles['main-label']}>로그인</div>
             <div className={styles['login-box']}>
                 <form action="/login" method='POST' className={styles.forms}>
-                        <input 
-                            type="text" 
-                            className={styles['text-field']} 
-                            placeholder="아이디를 입력하세요" 
+                    <div className={styles['input-container']}>
+                        <input
+                            type="text"
+                            className={styles['text-field']}
+                            placeholder="아이디를 입력하세요"
                             value={userId}
                             onChange={e => setUserId(e.target.value)}
                         />
-                    <input 
-                        type="password" 
-                        className={styles['text-field']} 
-                        placeholder="비밀번호를 입력하세요" 
-                        value={userPassword}
-                        onChange={e => setUserPassword(e.target.value)}
-                    />
+                    </div>
+                    <div className={styles['input-container']}>
+                        <input
+                            type="password"
+                            className={styles['text-field']}
+                            placeholder="비밀번호를 입력하세요"
+                            value={userPassword}
+                            onChange={e => setUserPassword(e.target.value)}
+                        />
+                        <div className={styles['error-message']}>모든 정보를 입력해 주세요.</div>
+                    </div>
                     <div className={styles['keep-login-checkbox']}>
                         <label className={styles['round-checkbox']}>
                             <input
@@ -57,12 +62,13 @@ function Login() {
                             />
                             <span className={styles['checkmark']}></span>
                             로그인 상태 유지
-                        </label>    
+                        </label>
                     </div>
-                    <button 
+                    <button
                         className={styles['login-button']}
                         onClick={handleLogin}
-                    >로그인</button>
+                    >로그인
+                    </button>
                 </form>
                 <div className={styles['easy-login-label']}>
                     간편하게 시작하기
@@ -82,7 +88,7 @@ function Login() {
                     </div>
                 </div>
                 <button className={styles['signin-button']} onClick={() => movePage('/join')}>회원가입</button>
-                <div className={styles['forgot-login']}>아이디 | 비밀번호를 잊으셨나요? </div>
+                <div className={styles['forgot-login']}>아이디 | 비밀번호를 잊으셨나요?</div>
             </div>
         </div>
     );

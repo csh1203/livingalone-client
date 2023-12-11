@@ -160,3 +160,9 @@
     cursor: pointer;
 }
 
+.error-message {
+    color: var(--error, #FF3B30);
+    font-size: 0.8rem;
+    margin-top: 6px;
+}
+
