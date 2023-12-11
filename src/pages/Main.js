@@ -1,10 +1,9 @@
 import React from "react";
 // import styles from '../css/Main.module.css';
-import '../css/Style.css';
-import Nav from './Nav';
-// import MainBanner from './MainBanner';
-import MainArticles from "./MainArticles";
-import Footer from "./Footer";
+import '../css/common/Style.css';
+import Nav from '../components/common/Nav';
+import MainArticles from "../components/main/MainArticles";
+import Footer from "../components/common/Footer";
 
 function Main() {
     return (

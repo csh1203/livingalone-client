@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import '../css/Style.css';
-import styles from '../css/CostCalculator.module.css'
+import '../../css/common/Style.css';
+import styles from '../../css/calc/CostCalculator.module.css'
 
 function MainCostCalculator() {
     return(

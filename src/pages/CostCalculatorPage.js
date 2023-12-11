@@ -1,8 +1,8 @@
 import React from "react";
-import '../css/Style.css';
-import Nav from './Nav';
-import Footer from "./Footer";
-import MainCostCalculator from "./CostCalculator";
+import '../css/common/Style.css';
+import Nav from '../components/common/Nav';
+import Footer from "../components/common/Footer";
+import MainCostCalculator from "../components/calc/CostCalculator";
 
 function CostCalculatorPage() {
     return (
