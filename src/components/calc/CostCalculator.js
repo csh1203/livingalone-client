@@ -29,7 +29,7 @@ function CategoryCostCalculator() {
 
     return (
         <div className={styles.main}>
-            <img src="/images/calc_back.png" className={styles['back-img']} ></img>
+            <div className={styles['back-img-div']} style={{backgroundImage: 'url(/images/calc-back.png)'}}></div>
             <div className={styles['category-div']}>
                 <div className={styles['category']} onClick={clickCategory} ref={caterogyHome}>
                     <img src="/images/calc-home.png"></img>
