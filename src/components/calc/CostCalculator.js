@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import '../css/Style.css';
-import styles from '../css/CostCalculator.module.css'
+import '../../css/common/Style.css';
+import styles from '../../css/calc/CostCalculator.module.css'
 
 function MainCostCalculator() {
     return(
@@ -29,7 +29,7 @@ function CategoryCostCalculator() {
 
     return (
         <div className={styles.main}>
-            <div className={styles['back-img-div']} style={{backgroundImage: 'url(/images/calc_back.png)'}}></div>
+            <div className={styles['back-img-div']} style={{backgroundImage: 'url(/images/calc-back.png)'}}></div>
             <div className={styles['category-div']}>
                 <div className={styles['category']} onClick={clickCategory} ref={caterogyHome}>
                     <img src="/images/calc-home.png"></img>
