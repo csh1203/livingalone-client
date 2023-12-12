@@ -13,7 +13,6 @@ function Main() {
                 </div>
                 <div className={styles["sub-slogan"]}>자취가 처음인 당신을 위해 다양한 정보를 준비했어요!</div>
             </div>
-인
         </div>
     );
 }
