@@ -3,8 +3,8 @@
 :root {
     --gray-100: rgba(235, 235, 235, 1);
     --gray-300: rgba(235, 235, 235, 1);
-    --gray-900: rgba(31, 31, 31, 1);
     --gray-500: rgba(153, 153, 153, 1);
+    --gray-900: rgba(31, 31, 31, 1);
     --primary-300: rgba(104, 167, 240, 1);
     --error: #FF3B30;
 }
@@ -21,4 +21,5 @@ html {
     box-sizing: border-box;
     font-family: 'Noto Sans KR';
     list-style: none;
+    color: var(--gray-900)
 }
