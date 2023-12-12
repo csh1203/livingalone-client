@@ -43,7 +43,7 @@ main{
     position: relative;
     width: 1278px;
     height: 594px;
-    padding-left: 40px;
+    padding: 40px 0 40px 40px;
     border-radius: 16px;
     box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.06);
     margin-top: calc(52px - 110px);
@@ -52,10 +52,13 @@ main{
     margin-bottom: 44px;
 }
 
-.input-title{
-    padding-top: 40px;
+.input-title,
+.transportation-title{
     font-size: 20px;
     color: var(--gray-900, #1F1F1F);
+}
+.transportation-title{
+    margin-top: 32px;
 }
 .radio-div{
     margin-top: 22px;
@@ -63,11 +66,23 @@ main{
 .input-radio{
     margin-right: 20px;
 }
-.monthly-input-div{
+.monthly-input-div,
+.daily-necessity-input,
+.transportation-input,
+.cell-phone-input,
+.subscription-input,
+.insurance-input,
+.emergency-input{
     margin-top: 24px;
 }
 .input-form,
-.monthly-input{
+.monthly-input,
+.daily-necessity-input,
+.transportation-input,
+.cell-phone-input,
+.subscription-input,
+.insurance-input,
+.emergency-input{
     width: 165px;
     height: 48px;
     padding-left: 12px;
@@ -83,4 +98,74 @@ main{
     font-size: 20px;
     column-gap: 135px;
 }
+.pin-container{
+    position: absolute;
+    bottom: 32px;
+    width: calc(100% - 40px * 2);
+}
+.sum-container{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+.sum-div{
+    display: flex;
+    width: 226px;
+    height: 48px;
+    align-items: center;
+    border-radius: 4px;
+    border: solid 1px #EBEBEB;
+    margin-top: 69px;
+    color: #ADADAD;
+}
+.sum-title{
+    width: 70px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: solid 1px #EBEBEB;
+}
+.sum-input{
+    padding-left: 20px;
+}
+.hr{
+    border: solid 1px #EBEBEB;
+    margin-top: 30px;
+}
+.btn-group{
+    display: flex;
+    justify-content: end;
+    column-gap: 12px;
+    margin-top: 32px;
+}
+.delete-btn, .save-btn{
+    width: 86px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+.delete-btn{
+    border: solid 1px #FF3B30;
+    color: #FF3B30;
+}
+.save-btn{
+    background-color: #036CE7;
+    color: white;
+}
+.input1-container{
+    display: flex;
+    column-gap: 31px;
+}
+.input2-container{
+    display: flex;
+    column-gap: 24px;
+}
+.insurance-cost-div,
+.emergency-fund-div{
+    margin-top: 32px;
+}
+
 
