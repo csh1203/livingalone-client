@@ -1,0 +1,118 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 125px 0 143px 0;
+}
+
+.main-label {
+    color: #000;
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.7px;
+}
+
+.login-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    margin: 32px 0 0 0;
+    width: fit-content;
+    height: fit-content;
+    padding: 40px 52px;
+    border-radius: 16px;
+    border: 1px solid var(--gray-300, #C2C2C2);
+    background: var(--white, #FFF);
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.forms {
+    width: 24vw;
+    max-width: 360px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.sub-label {
+    align-self: center;
+    color: var(--gray-900, #1F1F1F);
+    font-size: 1.2rem;
+}
+
+.text-field {
+    width: calc(100% - 30px);
+    height: 56px;
+    border: none;
+    background: var(--white, #FFF);
+    outline: none;
+
+    border-bottom: 1px solid;
+    border-color: var(--gray-200, #D6D6D6);;
+}
+
+.text-field[name=id] {
+    width: calc(100% - 100px);
+}
+
+.text-field[name=name],
+.text-field[name=email] {
+    width: 100%;
+}
+
+.inputs {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.small-button {
+    display: inline-flex;
+    padding: 8px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    border: 1.5px solid var(--primary-500, #036CE7);
+    background: none;
+    color: var(--primary-500, #036CE7);
+    cursor: pointer;
+}
+
+.text-field::placeholder {
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.login-button {
+    margin: 12px 0 0 0;
+    width: 100%;
+    padding: 13px 0;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    background: var(--primary-500, #036CE7);
+    color: var(--white, #fff);
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.error-message {
+    color: var(--error, #FF3B30);
+    font-size: 0.8rem;
+    margin-top: 6px;
+    display: none;
+}
+
+.icon {
+    font-size: 1.2rem;
+    color: var(--gray-300);
+}
