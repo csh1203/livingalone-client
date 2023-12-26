@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: center;
     padding: 125px 0 143px 0;
+    background: url("../../../public/images/auth/auth_bg.png");
 }
 
 .main-label {
