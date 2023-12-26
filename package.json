@@ -1,6 +1,8 @@
 {
-  "name": "livingalone-react-app",
-  "version": "0.1.0",
+  "name": "홀로서기",
+  "version": "0.0.1",
+  "description": "홀로서기 리액트 앱",
+  "author": "조서현, 황혜경",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
