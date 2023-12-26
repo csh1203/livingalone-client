@@ -11,10 +11,10 @@ function Nav() {
         <div className={styles.nav}>
             <Link to="/">
                 <div className={styles['nav-logo']}>
-                    <div className={styles['nav-logo']}><img className={styles['icon-logo']}
-                                                             src="./images/icon/icon_logo.png" alt=""/></div>
-                    <div className={styles['nav-logo']}><img className={styles['text-logo']}
-                                                             src="./images/icon/text_logo.png" alt=""/></div>
+                    <img className={styles['icon-logo']}
+                         src="./images/icon/icon_logo.png" alt=""/>
+                    <img className={styles['text-logo']}
+                         src="./images/icon/text_logo.png" alt=""/>
                 </div>
             </Link>
             <div className={styles['menu-list']}>
