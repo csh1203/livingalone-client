@@ -1,26 +1,34 @@
 import React from "react";
 import styles from '../../css/common/Nav.module.css';
 import '../../css/common/Style.css';
-import { Icon } from '@iconify/react';
-import { Link, useNavigate } from 'react-router-dom';
+import {Icon} from '@iconify/react';
+import {Link, useNavigate} from 'react-router-dom';
 
 
 // TODO: Link로 navItem마다 경로 설정
 function Nav() {
     return (
         <div className={styles.nav}>
-            <div className={styles['nav-logo']}>LOGO</div>
-                <div className={styles['menu-list']}>
-                    <ul className={styles['nav-list']}>
-                        <li className={styles['nav-item']}>자취 정보</li>
-                        <li className={styles['nav-item']}>자취력 테스트</li>
-                        <li className={styles['nav-item']}><Link to="/CostCalculator">비용 계산기</Link></li>
-                        <li className={styles['nav-item']}>게시글</li>
-                    </ul>
+            <Link to="/">
+                <div className={styles['nav-logo']}>
+                    <div className={styles['nav-logo']}><img className={styles['icon-logo']}
+                                                             src="./images/icon/icon_logo.png" alt=""/></div>
+                    <div className={styles['nav-logo']}><img className={styles['text-logo']}
+                                                             src="./images/icon/text_logo.png" alt=""/></div>
+                </div>
+            </Link>
+            <div className={styles['menu-list']}>
+                <ul className={styles['nav-list']}>
+                    <li className={styles['nav-item']}>자취 정보</li>
+                    {/*<li className={styles['nav-item']}>자취력 테스트</li>*/}
+                    <Link to="/CostCalculator">
+                        <li className={styles['nav-item']}>비용 계산기</li>
+                    </Link>
+                    <li className={styles['nav-item']}>Q&A</li>
+                </ul>
                 <div className={styles['icons']}>
-                    <Icon icon="akar-icons:bell" /> 
-                    <Link to="/login"> {/* 이동할 경로 지정 */}
-                            <Icon icon="icon-park-outline:people" />
+                    <Link to="/login">
+                        <Icon icon="icon-park-outline:people" className={styles['user-icon']}/>
                     </Link>
                 </div>
             </div>

@@ -17,15 +17,26 @@
 }
 
 .nav-logo {
-    font-size: 1.5rem;
-    font-weight: 700;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.icon-logo {
+    width: 20px;
+    height: 20px;
+}
+
+.text-logo {
+    width: 60px;
+    height: 14px;
 }
 
 .menu-list {
     display: flex;
     align-items: center;
     gap: 80px;
-    color: var(--gray600);
+    color: var(--gray-600);
     font-size: 0.9rem;
     font-weight: 500;
 }
@@ -42,6 +53,15 @@
     align-items: center;
     gap: 24px;
     color: var(--gray900);
+}
+
+li {
+    color: var(--gray-600);
+}
+
+.user-icon {
+    margin: 0 0 0 -20px;
+    font-size: 1.3rem;
 }
 
 
