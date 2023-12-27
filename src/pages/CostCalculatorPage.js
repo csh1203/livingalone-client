@@ -7,9 +7,9 @@ import MainCostCalculator from "../components/calc/CostCalculator";
 function CostCalculatorPage() {
     return (
         <div>
-            <Nav />  
-            <MainCostCalculator />          
-            <Footer />
+            <Nav/>
+            <MainCostCalculator/>
+            <Footer/>
         </div>
     )
 }

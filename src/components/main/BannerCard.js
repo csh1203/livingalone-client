@@ -3,7 +3,7 @@ import styles from '../../css/main/BannerCard.module.css';
 import '../../css/common/Style.css';
 import {Icon} from '@iconify/react';
 
-const BannerCard = ({iconUrl, mainTitle, subTitle, linkUrl}) => {
+function BannerCard({iconUrl, mainTitle, subTitle, linkUrl}){
     return (
         <div className={styles['banner-card']}>
             <h6 className={styles['sub-title']}>{subTitle}</h6>
