@@ -59,6 +59,12 @@ function ArticleList() {
                 {/*줄 맞춤을 위한 div*/}
                 <div className={`${styles['category-item']} ${styles['no-category']}`}></div>
             </div>
+            <div className={styles['filter-container']}>
+                <div className={styles['filter-item']}>
+                    <div className={styles['filter-text']}>검색 필터</div>
+                    <Icon icon="bi:filter" className={styles['filter-icon']}/>
+                </div>
+            </div>
         </div>
     );
 }
