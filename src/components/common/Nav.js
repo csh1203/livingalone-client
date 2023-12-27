@@ -19,7 +19,9 @@ function Nav() {
             </Link>
             <div className={styles['menu-list']}>
                 <ul className={styles['nav-list']}>
-                    <li className={styles['nav-item']}>자취 정보</li>
+                    <Link to="/articles">
+                        <li className={styles['nav-item']}>자취 정보</li>
+                    </Link>
                     {/*<li className={styles['nav-item']}>자취력 테스트</li>*/}
                     <Link to="/CostCalculator">
                         <li className={styles['nav-item']}>비용 계산기</li>
