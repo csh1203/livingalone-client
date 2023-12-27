@@ -11,7 +11,7 @@
     height: 60px;
     text-align: center;
     border-bottom: 1px solid var(--gray-200);
-    font-size: 1.2rem;
+    font-size: 1.05rem;
     font-weight: 500;
 }
 
@@ -34,3 +34,74 @@
     border-radius: 8px;
     border: 1px solid var(--gray-400, #ADADAD);
 }
+
+.filter-text {
+    color: var(--gray-600, #7A7A7A);
+    font-family: Noto Sans KR;
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+.article-list {
+    padding: 0 20vw 180px 20vw;
+}
+
+.article-container {
+    display: flex;
+    gap: 36px;
+    padding: 20px 0 20px 2vw;
+}
+
+.text-content {
+    width: 100%;
+}
+
+.thumbnail {
+    width: 305px;
+    height: 120px;
+    border-radius: 8px;
+    background-color: var(--gray-300);
+}
+
+.main-contents {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 8px 0;
+}
+
+.article-title {
+    color: var(--gray-900, #1F1F1F);
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.article-date {
+    color: var(--gray-500, #999);
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.sub-contents {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.article-content {
+    width: 80%;
+    height: fit-content;
+    color: var(--gray-600, #7A7A7A);
+    font-size: 0.8rem;
+    font-style: normal;
+    font-weight: 500;
+}
+
+.article-likes {
+    color: var(--gray-500, #999);
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin: 0 0 4px 0;
+}
+
