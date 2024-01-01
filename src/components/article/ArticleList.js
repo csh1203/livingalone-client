@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import styles from "../../css/article/ArticleList.module.css"
 import {Icon} from '@iconify/react';
+import {useSearchParams} from "react-router-dom";
 
 function Article() {
     return (
@@ -25,8 +26,10 @@ function Article() {
 
 function ArticleList() {
 
+    const [searchParams, setSearchParams] = useSearchParams();
+
     const [selectedCategory, setSelectedCategory] = useState(1);
-    const [selectedPage, setSelectedPage] = useState(1);
+    const [selectedPage, setSelectedPage] = useState(parseInt(searchParams.get('page')));
 
     // 카테고리 클릭 이벤트 리스너
     const handleCategoryClick = index => {
@@ -35,6 +38,8 @@ function ArticleList() {
 
     // 페이지 클릭 이벤트 리스너
     const handlePageClick = index => {
+        setSelectedPage(index);
+        window.location.replace(`/articles?page=${index}`);
         setSelectedPage(index);
     }
 
