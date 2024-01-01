@@ -2,6 +2,7 @@
     width: 100%;
 }
 
+/* 카테고리 */
 .category-container {
     display: flex;
 }
@@ -19,6 +20,7 @@
     width: 20vw;
 }
 
+/* 검색 필터 */
 .filter-container {
     display: flex;
     justify-content: flex-end;
@@ -42,6 +44,7 @@
     font-weight: 400;
 }
 
+/* 글 목록 */
 .article-list {
     padding: 0 20vw 180px 20vw;
 }
