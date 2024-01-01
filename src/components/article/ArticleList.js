@@ -22,14 +22,21 @@ function Article() {
         </div>
     );
 }
+
 function ArticleList() {
 
     const [selectedCategory, setSelectedCategory] = useState(1);
+    const [selectedPage, setSelectedPage] = useState(1);
 
     // 카테고리 클릭 이벤트 리스너
     const handleCategoryClick = index => {
         setSelectedCategory(index);
     };
+
+    // 페이지 클릭 이벤트 리스너
+    const handlePageClick = index => {
+        setSelectedPage(index);
+    }
 
     return (
         <div id={styles['main']}>
@@ -96,19 +103,56 @@ function ArticleList() {
             </div>
             <div className={styles['pagination-container']}>
                 <div className={styles['icons']}>
-                    <Icon icon="material-symbols:keyboard-double-arrow-left-rounded" className={styles['pagination-icon']}/>
+                    <Icon icon="material-symbols:keyboard-double-arrow-left-rounded"
+                          className={styles['pagination-icon']}/>
                     <Icon icon="iconamoon:arrow-left-2-light" className={styles['pagination-icon']}/>
                 </div>
-                <div className={styles['page-count']}>1</div>
-                <div className={styles['page-count']}>2</div>
-                <div className={styles['page-count']}>3</div>
-                <div className={styles['page-count']}>4</div>
-                <div className={styles['page-count']}>5</div>
-                <div className={styles['page-count']}>6</div>
-                <div className={styles['page-count']}>7</div>
+                <div
+                    className={styles['page-count']}
+                    onClick={() => handlePageClick(1)}
+                    style={{color: selectedPage === 1 ? "rgba(3, 108, 231, 1)" : "#5C5C5C"}}>
+                    1
+                </div>
+                <div
+                    className={styles['page-count']}
+                    onClick={() => handlePageClick(2)}
+                    style={{color: selectedPage === 2 ? "rgba(3, 108, 231, 1)" : "#5C5C5C"}}>
+                    2
+                </div>
+                <div
+                    className={styles['page-count']}
+                    onClick={() => handlePageClick(3)}
+                    style={{color: selectedPage === 3 ? "rgba(3, 108, 231, 1)" : "#5C5C5C"}}>
+                    3
+                </div>
+                <div
+                    className={styles['page-count']}
+                    onClick={() => handlePageClick(4)}
+                    style={{color: selectedPage === 4 ? "rgba(3, 108, 231, 1)" : "#5C5C5C"}}>
+                    4
+                </div>
+                <div
+                    className={styles['page-count']}
+                    onClick={() => handlePageClick(5)}
+                    style={{color: selectedPage === 5 ? "rgba(3, 108, 231, 1)" : "#5C5C5C"}}>
+                    5
+                </div>
+                <div
+                    className={styles['page-count']}
+                    onClick={() => handlePageClick(6)}
+                    style={{color: selectedPage === 6 ? "rgba(3, 108, 231, 1)" : "#5C5C5C"}}>
+                    6
+                </div>
+                <div
+                    className={styles['page-count']}
+                    onClick={() => handlePageClick(7)}
+                    style={{color: selectedPage === 7 ? "rgba(3, 108, 231, 1)" : "#5C5C5C"}}>
+                    7
+                </div>
                 <div className={styles['icons']}>
                     <Icon icon="iconamoon:arrow-right-2-light" className={styles['pagination-icon']}/>
-                    <Icon icon="material-symbols:keyboard-double-arrow-right-rounded" className={styles['pagination-icon']}/>
+                    <Icon icon="material-symbols:keyboard-double-arrow-right-rounded"
+                          className={styles['pagination-icon']}/>
                 </div>
             </div>
         </div>
