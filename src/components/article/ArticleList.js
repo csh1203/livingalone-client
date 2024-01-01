@@ -94,6 +94,23 @@ function ArticleList() {
                 <Article/>
                 <Article/>
             </div>
+            <div className={styles['pagination-container']}>
+                <div className={styles['icons']}>
+                    <Icon icon="material-symbols:keyboard-double-arrow-left-rounded" className={styles['pagination-icon']}/>
+                    <Icon icon="iconamoon:arrow-left-2-light" className={styles['pagination-icon']}/>
+                </div>
+                <div className={styles['page-count']}>1</div>
+                <div className={styles['page-count']}>2</div>
+                <div className={styles['page-count']}>3</div>
+                <div className={styles['page-count']}>4</div>
+                <div className={styles['page-count']}>5</div>
+                <div className={styles['page-count']}>6</div>
+                <div className={styles['page-count']}>7</div>
+                <div className={styles['icons']}>
+                    <Icon icon="iconamoon:arrow-right-2-light" className={styles['pagination-icon']}/>
+                    <Icon icon="material-symbols:keyboard-double-arrow-right-rounded" className={styles['pagination-icon']}/>
+                </div>
+            </div>
         </div>
     );
 }
