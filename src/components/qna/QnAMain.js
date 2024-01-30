@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../../css/qna/QnAMain.module.css';
 import '../../css/common/Style.css';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 function QnAMain() {
 
@@ -15,7 +16,7 @@ function QnAMain() {
                     <div className={styles['icon']}>📑</div>
                     <div className={styles['category-sub']}>나와 비슷한 고민이 있을까?</div>
                     <div className={styles['category-main']}>전체 Q&A<br />게시글 확인하기</div>
-                    <button className={styles['go-category']}>게시글 보러가기</button>
+                    <Link to={"/qna/all"} className={styles['go-category']}>게시글 보러가기</Link>
                 </div>
                 <div className={styles['category-container']} id={styles.home}>
                     <div className={styles['icon']}>🏠</div>
@@ -38,7 +39,6 @@ function QnAMain() {
                     <div className={styles['category-main']}>생활꿀팁</div>
                 </div>
             </div>
-
         </div>
     );
 }
