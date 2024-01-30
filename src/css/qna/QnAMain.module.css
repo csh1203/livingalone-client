@@ -26,7 +26,6 @@
 .categories-container {
     padding: 0 20vw;
     width: 100%;
-    background-color: azure;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 16rem 16rem;
@@ -70,6 +69,7 @@
     background-color: #FFF;
     border-radius: 8px;
     color: #036CE7;
+    cursor: pointer ;
 }
 
 #all {
