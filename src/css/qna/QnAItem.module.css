@@ -1,0 +1,33 @@
+.item-container {
+    display: flex;
+    flex-direction: column;
+    width: 22vw;
+    padding: 28px 32px;
+    border-radius: 20px;
+    border: 1px solid var(--gray-300, #B7B9C0);
+    background: var(--white, #FFF);
+}
+
+.q-content {
+    color: var(--gray-800, #37383C);
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.a-content {
+    color: var(--gray-500, #8A8C96);
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.date {
+    color: var(--gray-300, #B7B9C0);
+    text-align: right;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+}
