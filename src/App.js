@@ -13,6 +13,7 @@ import JoinPage from "./pages/JoinPage";
 import ArticlePage from "./pages/ArticlePage";
 import QnAPage from "./pages/QnAPage";
 import AllQnABoardPage from "./pages/AllQnABoardPage";
+import CreateQnAPage from "./pages/CreateQnAPage";
 
 function App() {
     return (
@@ -25,6 +26,7 @@ function App() {
                 <Route path={"/articles"} element={<ArticlePage/>}/>
                 <Route path={"/qna"} element={<QnAPage />} />
                 <Route path={"/qna/all"} element={<AllQnABoardPage />} />
+                <Route path={"/qna/write"} element={<CreateQnAPage />} />
             </Routes>
         </Router>
     );
