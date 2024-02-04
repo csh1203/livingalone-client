@@ -21,7 +21,7 @@
 }
 
 .items-container {
-    height: 60vh;
+    height: 40vw;
     width: fit-content;
     display: flex;
     flex-direction: column;
