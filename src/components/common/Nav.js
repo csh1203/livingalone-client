@@ -4,15 +4,15 @@ import '../../css/common/Style.css';
 import { Icon } from '@iconify/react';
 import { Link } from 'react-router-dom';
 
-function Nav() {
+function Nav({imgPath}) {
     return (
         <div className={styles.nav}>
             <Link to="/">
                 <div className={styles['nav-logo']}>
                     <img className={styles['icon-logo']}
-                        src="./images/icon/icon_logo.png" alt="" />
+                        src="/images/icon/icon_logo.png" alt="" />
                     <img className={styles['text-logo']}
-                        src="./images/icon/text_logo.png" alt="" />
+                        src="/images/icon/text_logo.png" alt="" />
                 </div>
             </Link>
             <div className={styles['menu-list']}>
