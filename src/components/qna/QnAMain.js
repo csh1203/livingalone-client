@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import styles from '../../css/qna/QnAMain.module.css';
 import '../../css/common/Style.css';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Icon } from '@iconify/react';
+import { Link } from 'react-router-dom';
 
 function QnAMain() {
 
@@ -39,6 +40,10 @@ function QnAMain() {
                     <div className={styles['category-main']}>생활꿀팁</div>
                 </div>
             </div>
+            <Link className={styles['go-write']} to={'/qna/write'}>
+                    <Icon className={styles['pen-icon']} icon="ri:ball-pen-fill" />
+                    <div>Q&A 작성</div>
+            </Link>
         </div>
     );
 }

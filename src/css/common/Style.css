@@ -1,9 +1,9 @@
 @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 
 :root {
-    --gray-100: rgba(248, 248, 248, 1);
+    --gray-100: #F2F4FA;
     --gray-200: rgba(214, 214, 214, 1);
-    --gray-300: rgba(235, 235, 235, 1);
+    --gray-300: #B7B9C0;
     --gray-400: rgba(173, 173, 173, 1);
     --gray-500: rgba(153, 153, 153, 1);
     --gray-600: rgba(122, 122, 122, 1);
