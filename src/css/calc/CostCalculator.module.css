@@ -66,23 +66,10 @@ main{
 .input-radio{
     margin-right: 20px;
 }
-.monthly-input-div,
-.daily-necessity-input,
-.transportation-input,
-.cell-phone-input,
-.subscription-input,
-.insurance-input,
-.emergency-input{
+.input-margin{
     margin-top: 24px;
 }
-.input-form,
-.monthly-input,
-.daily-necessity-input,
-.transportation-input,
-.cell-phone-input,
-.subscription-input,
-.insurance-input,
-.emergency-input{
+.input-style{
     width: 165px;
     height: 48px;
     padding-left: 12px;
@@ -166,6 +153,23 @@ main{
 .insurance-cost-div,
 .emergency-fund-div{
     margin-top: 32px;
+}
+.radio-btn-div{
+    margin-top: 24px;
+    margin-bottom: 24px;
+    display: flex;
+    column-gap: 20px;
+}
+.monthly-btn-div,
+.charter-btn-div{
+    display: flex;
+    column-gap: 3px;
+    align-items: center;
+}
+.monthly-btn,
+.charter-btn{
+    width: 20px;
+    height: 20px;
 }
 
 
