@@ -14,6 +14,8 @@ import ArticlePage from "./pages/ArticlePage";
 import QnAPage from "./pages/QnAPage";
 import AllQnABoardPage from "./pages/AllQnABoardPage";
 import CreateQnAPage from "./pages/CreateQnAPage";
+import BasicProfileMain from "./components/profile/BasicProfileMain";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
     return (
@@ -24,9 +26,10 @@ function App() {
                 <Route path={"/join"} element={<JoinPage/>}/>
                 <Route path={"/costCalculator"} element={<CostCalculatorPage/>}/>
                 <Route path={"/articles"} element={<ArticlePage/>}/>
-                <Route path={"/qna"} element={<QnAPage />} />
-                <Route path={"/qna/all"} element={<AllQnABoardPage />} />
-                <Route path={"/qna/write"} element={<CreateQnAPage />} />
+                <Route path={"/qna"} element={<QnAPage/>}/>
+                <Route path={"/qna/all"} element={<AllQnABoardPage/>}/>
+                <Route path={"/qna/write"} element={<CreateQnAPage/>}/>
+                <Route path={"/mypage"} element={<ProfilePage/>}/>
             </Routes>
         </Router>
     );

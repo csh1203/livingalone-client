@@ -1,0 +1,116 @@
+.main {
+    margin: 147px 0 0 0;
+    padding: 0 16.6vw;
+    height: 100vh;
+}
+
+.profile-box {
+    border-radius: 20px;
+    border: 1px solid var(--gray-200);
+    padding: 30px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 24%;
+}
+
+.profile-image-wrap {
+    width: 32%;
+}
+
+.profile-image {
+    position: relative;
+    width: 100%;
+    object-fit: contain;
+}
+
+.edit-button {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    position: relative;
+    bottom: 0;
+    right: 0;
+    transform: translate(250%, -100%);
+    background-color: var(--primary-500);
+}
+
+.name {
+    font-weight: 500;
+    font-size: 1.2rem;
+    color: var(--primary-500);
+}
+
+.email {
+    font-weight: 400;
+    font-size: 0.82rem;
+    color: var(--gray-400);
+    margin: 0 0 30px 0;
+}
+
+.users-active {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin: 0 0 12px 0;
+}
+
+.active-label {
+    font-weight: 400;
+    font-size: 0.82rem;
+    line-height: 160%;
+    color: var(--gray-900);
+}
+
+.count {
+    font-weight: 400;
+    font-size: 0.82rem;
+    line-height: 160%;
+    color: var(--gray-500);
+}
+
+.divider {
+    margin: 8px 0 20px 0;
+    width: 100%;
+    border: 0.5px solid var(--gray-100);
+}
+
+.mention {
+    align-self: flex-start;
+    color: var(--gray-900);
+    font-weight: 400;
+    font-size: 0.9rem;
+    margin: 0 0 20px 0;
+}
+
+button {
+    width: 100%;
+    font-weight: 400;
+    font-size: 0.95rem;
+    border-radius: 8px;
+}
+
+.to-info {
+    background-color: var(--primary-500);
+    color: #fff;
+    margin: 0 0 14px 0;
+}
+
+.to-qna {
+    background-color: #fff;
+    border: 1px solid var(--gray-200);
+    margin: 0 0 42px 0;
+}
+
+.logs {
+    justify-self: flex-end;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.log-item {
+    color: var(--gray-300);
+    font-weight: 400;
+    font-size: 0.88rem;
+}
