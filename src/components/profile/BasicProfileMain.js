@@ -1,6 +1,8 @@
 import React from "react";
 import '../../css/common/Style.css';
 import styles from '../../css/profile/BasicProfile.module.css'
+import { Icon } from '@iconify/react';
+import MyQnA from "./MyQnA";
 
 function BasicProfileMain() {
     return (
@@ -8,7 +10,9 @@ function BasicProfileMain() {
             <div className={styles['profile-box']}>
                 <div className={styles['profile-image-wrap']}>
                     <img className={styles['profile-image']} src="/images/basicProfile.png"/>
-                    <div className={styles['edit-button']}></div>
+                    <div className={styles['edit-button']}>
+                        <Icon icon="uil:pen" className={styles['edit-button-icon']}/>
+                    </div>
                 </div>
                 <div className={styles['name']}>홍길동님</div>
                 <div className={styles['email']}>holostand@gmail.com</div>
@@ -28,6 +32,10 @@ function BasicProfileMain() {
                     <div className={styles['log-item']}>로그아웃</div>
                     <div className={styles['log-item']}>계정탈퇴</div>
                 </div>
+            </div>
+
+            <div>
+                <MyQnA />
             </div>
         </div>
     )
