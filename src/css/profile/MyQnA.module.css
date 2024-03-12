@@ -1,0 +1,21 @@
+.qna-title-box{
+    display: flex;
+    column-gap: 8px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.qna-title{
+    font-weight: 500;
+    font-size: 20px;
+    color: var(--gray-800);
+}
+.qna-length{
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--primary-500);
+}
+.qna-list{
+    position: relative;
+    width: 100%;
+    height: calc(145px * 4 + 12px * 3);
+}
