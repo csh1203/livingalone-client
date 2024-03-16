@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import '../../css/common/Style.css';
 import styles from '../../css/profile/BasicProfile.module.css'
 import { Icon } from '@iconify/react';
 import MyQnA from "./MyQnA";
+import MyComment from "./MyComment"
 
 function BasicProfileMain() {
+    const [activeButtonIndex, setActiveButtonIndex] = useState(null);
+
     return (
         <div className={styles['main']}>
             <div className={styles['profile-box']}>
@@ -16,12 +19,18 @@ function BasicProfileMain() {
                 </div>
                 <div className={styles['name']}>홍길동님</div>
                 <div className={styles['email']}>holostand@gmail.com</div>
-                <div className={styles['users-active']}>
-                    <div className={styles['active-label']}>내가 작성한 Q&A</div>
+                <div className={styles['users-active']} onClick={() => setActiveButtonIndex(0)}>
+                    <div className={styles['active-label-box']}>
+                        <img src={activeButtonIndex === 0 ? '/images/mypage-icon/my_qna_select.svg' : '/images/mypage-icon/my_qna.svg'} />
+                        <div className={styles['active-label']} style={{ color: activeButtonIndex === 0 ? '#036CE7' : '#1C1C1E'}}>내가 작성한 Q&A</div>
+                    </div>
                     <div className={styles['count']}>1개</div>
                 </div>
-                <div className={styles['users-active']}>
-                    <div className={styles['active-label']}>내가 작성한 Q&A</div>
+                <div className={styles['users-active']} onClick={() => setActiveButtonIndex(1)}>
+                    <div className={styles['active-label-box']}>
+                        <img src={activeButtonIndex === 1 ? '/images/mypage-icon/my_comment_select.svg' : '/images/mypage-icon/my_comment.svg'} />
+                        <div className={styles['active-label']} style={{ color: activeButtonIndex === 1 ? '#036CE7' : '#1C1C1E'}}>내가 쓴 댓글</div>
+                    </div>
                     <div className={styles['count']}>1개</div>
                 </div>
                 <hr className={styles['divider']}/>
@@ -35,7 +44,7 @@ function BasicProfileMain() {
             </div>
 
             <div>
-                <MyQnA />
+                {activeButtonIndex === null ? <></> : activeButtonIndex ? <MyComment /> : <MyQnA />}
             </div>
         </div>
     )

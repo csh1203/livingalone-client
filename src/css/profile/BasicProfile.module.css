@@ -43,8 +43,8 @@
 }
 
 .edit-button-icon{
-    color: white;
     font-size: 10px;
+    color: white;
 }
 
 .name {
@@ -66,6 +66,12 @@
     width: 100%;
     justify-content: space-between;
     margin: 0 0 12px 0;
+}
+
+.active-label-box{
+    display: flex;
+    column-gap: 4px;
+    align-items: center;
 }
 
 .active-label {
