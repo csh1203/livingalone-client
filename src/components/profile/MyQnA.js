@@ -19,12 +19,13 @@ function MyQnA() {
         <MyQnAItem key={9} />,
         <MyQnAItem key={10} />,
         <MyQnAItem key={11} />,
-      ];
+    ];
 
-    const indexOfLastPost = currentPage * 4;
-    const indexOfFirstPost = indexOfLastPost - 4;
+    const postsPerPage = 4;
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
     const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
-    const pageLength = Math.ceil(posts.length / 4);
+    const pageLength = Math.ceil(posts.length / postsPerPage);
     const qnaLength = posts.length;
 
     const onClickPrevPage = () => currentPage === 1 ? setCurrentPage(pageLength) : setCurrentPage(currentPage - 1);
