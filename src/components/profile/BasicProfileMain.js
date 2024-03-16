@@ -4,9 +4,11 @@ import styles from '../../css/profile/BasicProfile.module.css'
 import { Icon } from '@iconify/react';
 import MyQnA from "./MyQnA";
 import MyComment from "./MyComment"
+import { Link } from 'react-router-dom';
 
 function BasicProfileMain() {
     const [activeButtonIndex, setActiveButtonIndex] = useState(null);
+    const [showLogoutAlert, setShowLogoutAlert] = useState(false);
 
     return (
         <div className={styles['main']}>
@@ -38,13 +40,35 @@ function BasicProfileMain() {
                 <button className={styles['to-info']}>자취정보 확인하기</button>
                 <button className={styles['to-qna']}>Q&A 보러가기</button>
                 <div className={styles['logs']}>
-                    <div className={styles['log-item']}>로그아웃</div>
+                    <div className={styles['log-item']} onClick={() => setShowLogoutAlert(true)}>로그아웃</div>
                     <div className={styles['log-item']}>계정탈퇴</div>
                 </div>
             </div>
 
             <div>
                 {activeButtonIndex === null ? <></> : activeButtonIndex ? <MyComment /> : <MyQnA />}
+            </div>
+
+            {showLogoutAlert && <LogoutAlertBox setShowLogoutAlert={setShowLogoutAlert}/>}
+        </div>
+    )
+}
+
+function LogoutAlertBox ({ setShowLogoutAlert }) {
+    return (
+        <div className={styles['alert-shadow']}>
+            <div className={styles['alert-box']}>
+                <div className={styles['alert-title']}>로그아웃 하시겠습니까?</div>
+                <div className={styles['alert-comment']}>
+                    홀로서기 서비스를 이용하실려면 로그인이 필요합니다. <br/>
+                    정말 로그아웃 하시겠습니까?
+                </div>
+                <div className={styles['alert-btns']}>
+                    <div className={styles['alert-btn-no']} onClick={() => setShowLogoutAlert(false)}>아니오</div>
+                    <Link to={"/login"}>
+                        <div className={styles['alert-btn-yes']}>네</div>
+                    </Link>
+                </div>
             </div>
         </div>
     )
