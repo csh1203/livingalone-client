@@ -1,0 +1,57 @@
+.qna-box{
+    position: relative;
+    height: 100%;
+}
+.qna-title-box{
+    display: flex;
+    column-gap: 8px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.qna-title{
+    font-weight: 500;
+    font-size: 20px;
+    color: var(--gray-800);
+}
+.qna-length{
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--primary-500);
+}
+.qna-list{
+    position: relative;
+    width: 100%;
+    height: calc(145px * 4 + 12px * 3);
+}
+.qna-pages{
+    position: absolute;
+    bottom: 60px;
+    right: 0;
+    display: flex;
+    align-items: center;
+}
+.qna-pages > * {
+    color: var(--gray-700);
+}
+.prev-btn{
+    transform: rotate(-90deg);
+    font-size: 24px;
+}
+.current-page{
+    width: 26px;
+    height: 26px;
+    text-align: center;
+    color: var(--primary-500);
+}
+.slash{
+    font-size: 13px;
+}
+.all-pages{
+    width: 26px;
+    height: 26px;
+    text-align: center;
+}
+.next-btn{
+    transform: rotate(90deg);
+    font-size: 24px;
+}
