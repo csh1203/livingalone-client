@@ -1,4 +1,5 @@
 .main {
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -67,7 +68,7 @@
     font-size: 0.9rem;
     font-weight: 400;
 }
-  
+
 .round-checkbox input {
     position: absolute;
     opacity: 0;
@@ -129,7 +130,7 @@
     justify-content: center;
     cursor: pointer;
 }
-  
+
 .auth-icon-img {
     width: 20px;
     height: 20px;
@@ -165,5 +166,6 @@
     color: var(--error, #FF3B30);
     font-size: 0.8rem;
     margin-top: 6px;
+    display: none;
 }
 
