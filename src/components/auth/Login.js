@@ -14,17 +14,13 @@ function Login() {
     const handleLogin = async () => {
         const req = {
             user_id: userId,
-            user_password: userPassword
+            password: userPassword
         }
 
-        console.log(req);
-
         try {
-            const response = await axios.post(`http://127.0.0.1:3000/login`, {
-                userId, userPassword
-            });
-
+            const response = await axios.post(`http://127.0.0.1:3001/users/login`, req);
             console.log('로그인 성공:', response.data);
+            movePage('/mypage');
         } catch (error) {
             console.error('로그인 실패:', error)
         }
@@ -44,6 +40,7 @@ function Login() {
                             value={userId}
                             onChange={e => setUserId(e.target.value)}
                         />
+                        <div className={styles['error-message']}>모든 정보를 입력해 주세요.</div>
                     </div>
                     <div className={styles['input-container']}>
                         <input
