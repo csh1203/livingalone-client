@@ -15,9 +15,11 @@ function BasicProfileMain() {
             <div className={styles['profile-box']}>
                 <div className={styles['profile-image-wrap']}>
                     <img className={styles['profile-image']} src="/images/basicProfile.png"/>
-                    <div className={styles['edit-button']}>
-                        <Icon icon="uil:pen" className={styles['edit-button-icon']}/>
-                    </div>
+                    <Link to="/mypage/editInfo">
+                        <div className={styles['edit-button']}>
+                            <Icon icon="uil:pen" className={styles['edit-button-icon']}/>
+                        </div>
+                    </Link>
                 </div>
                 <div className={styles['name']}>홍길동님</div>
                 <div className={styles['email']}>holostand@gmail.com</div>
