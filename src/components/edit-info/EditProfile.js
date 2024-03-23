@@ -25,8 +25,11 @@ function EditProfile() {
 
     return(
         <>
-            <div className={styles['title']}>프로필 수정</div>
-            <div className={styles['sub-title']}>홀로서기에서 사용될 프로필과 닉네임을 수정하실 수 있습니다.</div>
+            <div className={styles['title-box']}>
+                <div className={styles['title']}>프로필 수정</div>
+                <div className={styles['sub-title']}>홀로서기에서 사용될 프로필과 닉네임을 수정하실 수 있습니다.</div>
+            </div>
+            
 
             <div className={styles['set-table']}>
                 <div className={styles['profile-img-title']}>프로필 사진</div>
