@@ -1,0 +1,22 @@
+.body{
+    padding: 0 20vw;
+    width: 100%;
+    margin-top: 100px;
+    height: calc(100vh - 100px);
+}
+.scope-bar{
+    display: flex;
+    column-gap: 24px;
+    margin-bottom: 40px;
+}
+.my-profile,
+.security-setting{
+    height: 34px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--gray-500);
+}
+.ch-btn{
+    color: var(--primary-500);
+    border-bottom: 2px solid var(--primary-500);
+}
