@@ -3,6 +3,7 @@ import '../../css/common/Style.css';
 import styles from '../../css/edit-info/EditInfo.module.css'
 
 import EditProfile from "./EditProfile";
+import SettingSecurity from "./SettingSecurity";
 
 function EditInfo () {
     const [chooseBtn, setChooseBtn] = useState(true);
@@ -15,7 +16,7 @@ function EditInfo () {
                 <div className={`${styles['security-setting']} ${chooseBtn ? '' : styles['ch-btn']}`}
                     onClick={() => setChooseBtn(false)}>보안설정</div>
             </div>
-            {chooseBtn ? <EditProfile/> : <></>}
+            {chooseBtn ? <EditProfile/> : <SettingSecurity/>}
             
         </div>
     )
