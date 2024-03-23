@@ -14,8 +14,8 @@ import ArticlePage from "./pages/ArticlePage";
 import QnAPage from "./pages/QnAPage";
 import AllQnABoardPage from "./pages/AllQnABoardPage";
 import CreateQnAPage from "./pages/CreateQnAPage";
-import BasicProfileMain from "./components/profile/BasicProfileMain";
 import ProfilePage from "./pages/ProfilePage";
+import EditInfoPage from "./pages/EditInfoPage";
 
 function App() {
     return (
@@ -30,6 +30,7 @@ function App() {
                 <Route path={"/qna/all"} element={<AllQnABoardPage/>}/>
                 <Route path={"/qna/write"} element={<CreateQnAPage/>}/>
                 <Route path={"/mypage"} element={<ProfilePage/>}/>
+                <Route path={"/mypage/editInfo"} element={<EditInfoPage/>}/>
             </Routes>
         </Router>
     );
