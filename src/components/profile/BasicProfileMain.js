@@ -4,47 +4,11 @@ import styles from '../../css/profile/BasicProfile.module.css'
 import { Icon } from '@iconify/react';
 import MyQnA from "./MyQnA";
 import MyComment from "./MyComment"
-import {Link, useNavigate} from 'react-router-dom';
-import {useSelector} from "react-redux";
-import axios from "axios";
+import { Link } from 'react-router-dom';
 
 function BasicProfileMain() {
-    const movePage = useNavigate();
     const [activeButtonIndex, setActiveButtonIndex] = useState(null);
     const [showLogoutAlert, setShowLogoutAlert] = useState(false);
-
-    const [userInfo, setUserInfo] = useState(null);
-    const [usersComments, setUsersComments] = useState([]);
-
-    // Redux 스토어에서 유저의 PK 값을 가져옴
-    const userPK = useSelector(state => state.user.userPK);
-
-    useEffect(() => {
-        // userPK가 있는 경우에만 사용자 정보 요청을 보냄
-        if (userPK) {
-            fetchUserInfo();
-        } else {
-            movePage('/login');
-        }
-    }, [userPK]);
-
-    const fetchUserInfo = async () => {
-        try {
-            const response = await axios.get(`http://127.0.0.1:3001/users/1`);
-            setUserInfo(response.data);
-        } catch (error) {
-            console.error('사용자 정보 요청 실패:', error);
-        }
-    };
-
-    const fetchCommentInfo = async () => {
-        try {
-            const response = await axios.get(`http://127.0.0.1:3001/answers/list/1`);
-            setUsersComments(response.data.data)
-        } catch (error) {
-            console.error('댓글 요청 실패:', error);
-        }
-    }
 
     return (
         <div className={styles['main']}>
@@ -79,7 +43,7 @@ function BasicProfileMain() {
                 <button className={styles['to-qna']}>Q&A 보러가기</button>
                 <div className={styles['logs']}>
                     <div className={styles['log-item']} onClick={() => setShowLogoutAlert(true)}>로그아웃</div>
-                    <div className={styles['log-item']}>계정탈퇴</div>
+                    <div className={styles['log-item']} onClick={() => setShowCancelPopup(true)}>계정탈퇴</div>
                 </div>
             </div>
 
@@ -87,7 +51,8 @@ function BasicProfileMain() {
                 {activeButtonIndex === null ? <></> : activeButtonIndex ? <MyComment /> : <MyQnA />}
             </div>
 
-            {showLogoutAlert && <LogoutAlertBox setShowLogoutAlert={setShowLogoutAlert}/>}
+            { showLogoutAlert && <LogoutAlertBox setShowLogoutAlert={setShowLogoutAlert}/> }
+            { showCancelPopup && <CancelAccount setShowCancelPopup={setShowCancelPopup}/> }
         </div>
     )
 }

@@ -1,0 +1,82 @@
+.popup-shadow{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.12);
+    z-index: 1500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-box{
+    position: relative;
+    background-color: white;
+    border-radius: 20px;
+    padding: 40px 49px 60px 49px;
+}
+
+.title{
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 40px;
+}
+
+.change-pw-box{
+    display: flex;
+    flex-direction: column;
+    row-gap: 32px;
+    width: 364px;
+    margin-bottom: 60px;
+}
+
+.current-pw,
+.new-pw,
+.check-pw{
+    width: 100%;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+input{
+    height: 100%;
+    border: none;
+    outline: none;
+    width: calc(100% - 24px);
+}
+
+input::placeholder{
+    color: var(--gray-600);
+}
+
+.warning-text{
+    margin-top: 6px;
+    font-size: 12px;
+    color: var(--error);
+    top: 0;
+}
+
+.not-same-box{
+    border-bottom: 1px solid var(--error);
+}
+
+.apply-btn{
+    width: 100%;
+    height: 52px;
+    background-color: var(--primary-300);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 500;
+}
+
+.activation-apply-btn{
+    background-color: var(--primary-500);
+}
