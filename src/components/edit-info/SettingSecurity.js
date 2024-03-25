@@ -5,10 +5,12 @@ import { Icon } from '@iconify/react';
 
 import ShowEmailSecurity from './ShowEmailSecurity';
 import ChangePw from './ChangePw'
+import ChangeEmail from "./ChangeEmail";
 
 function SettingSecurity() {
     const [ showEmailSecurity, setShowEmailSecurity] = useState(false);
     const [ showChangePw, setShowChangePw ] = useState(false);
+    const [ showChangeEmail, setShowChangeEmail ] = useState(false);
 
     return(
         <>
@@ -34,7 +36,8 @@ function SettingSecurity() {
                                 <Icon icon="uiw:mail" className={styles['security-icon']}/>
                                 <div className={styles['security-box-title']}>이메일</div>
                             </div>
-                            <div className={`${styles['edit-security-btn']} ${styles['security-btn']}`}>변경</div>
+                            <div className={`${styles['edit-security-btn']} ${styles['security-btn']}`}
+                                onClick={() => setShowChangeEmail(true)}>변경</div>
                         </div>
                     </div>
                 </div>
@@ -53,6 +56,7 @@ function SettingSecurity() {
 
             {showEmailSecurity && <ShowEmailSecurity setShowEmailSecurity={setShowEmailSecurity}/>}
             {showChangePw && <ChangePw setShowChangePw={setShowChangePw}/>}
+            {showChangeEmail && <ChangeEmail setShowChangeEmail={setShowChangeEmail}/>}
         </>
     )
 }
