@@ -1,16 +1,14 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import '../../css/common/Style.css';
 import styles from '../../css/profile/BasicProfile.module.css'
 import { Icon } from '@iconify/react';
 import MyQnA from "./MyQnA";
 import MyComment from "./MyComment"
-import CancelAccount from "./CancelAccount";
 import { Link } from 'react-router-dom';
 
 function BasicProfileMain() {
-    const [ activeButtonIndex, setActiveButtonIndex ] = useState(null);
-    const [ showLogoutAlert, setShowLogoutAlert ] = useState(false);
-    const [ showCancelPopup, setShowCancelPopup ] = useState(false);
+    const [activeButtonIndex, setActiveButtonIndex] = useState(null);
+    const [showLogoutAlert, setShowLogoutAlert] = useState(false);
 
     return (
         <div className={styles['main']}>
@@ -23,8 +21,8 @@ function BasicProfileMain() {
                         </div>
                     </Link>
                 </div>
-                <div className={styles['name']}>홍길동님</div>
-                <div className={styles['email']}>holostand@gmail.com</div>
+                <div className={styles['name']}>{userInfo ? userInfo.name : "로딩중"}님</div>
+                <div className={styles['email']}>{userInfo ? userInfo.email : "로딩중"}</div>
                 <div className={styles['users-active']} onClick={() => setActiveButtonIndex(0)}>
                     <div className={styles['active-label-box']}>
                         <img src={activeButtonIndex === 0 ? '/images/mypage-icon/my_qna_select.svg' : '/images/mypage-icon/my_qna.svg'} />
@@ -37,7 +35,7 @@ function BasicProfileMain() {
                         <img src={activeButtonIndex === 1 ? '/images/mypage-icon/my_comment_select.svg' : '/images/mypage-icon/my_comment.svg'} />
                         <div className={styles['active-label']} style={{ color: activeButtonIndex === 1 ? '#036CE7' : '#1C1C1E'}}>내가 쓴 댓글</div>
                     </div>
-                    <div className={styles['count']}>1개</div>
+                    <div className={styles['count']}>{usersComments.length}개</div>
                 </div>
                 <hr className={styles['divider']}/>
                 <div className={styles['mention']}>자취 모르는게 있다면?</div>

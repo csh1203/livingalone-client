@@ -5,6 +5,8 @@ import {
     Route,
     Routes
 } from 'react-router-dom';
+import { Provider } from 'react-redux'; // 추가
+import store from './store'; // 추가
 
 import Main from "./pages/Main";
 import LoginPage from "./pages/LoginPage";
@@ -19,20 +21,22 @@ import EditInfoPage from "./pages/EditInfoPage";
 
 function App() {
     return (
-        <Router>
-            <Routes>
-                <Route path={"/"} element={<Main/>}/>
-                <Route path={"/login"} element={<LoginPage/>}/>
-                <Route path={"/join"} element={<JoinPage/>}/>
-                <Route path={"/costCalculator"} element={<CostCalculatorPage/>}/>
-                <Route path={"/articles"} element={<ArticlePage/>}/>
-                <Route path={"/qna"} element={<QnAPage/>}/>
-                <Route path={"/qna/all"} element={<AllQnABoardPage/>}/>
-                <Route path={"/qna/write"} element={<CreateQnAPage/>}/>
-                <Route path={"/mypage"} element={<ProfilePage/>}/>
-                <Route path={"/mypage/editInfo"} element={<EditInfoPage/>}/>
-            </Routes>
-        </Router>
+        <Provider store={store}> {/* Provider 추가 */}
+            <Router>
+                <Routes>
+                    <Route path={"/"} element={<Main/>}/>
+                    <Route path={"/login"} element={<LoginPage/>}/>
+                    <Route path={"/join"} element={<JoinPage/>}/>
+                    <Route path={"/costCalculator"} element={<CostCalculatorPage/>}/>
+                    <Route path={"/articles"} element={<ArticlePage/>}/>
+                    <Route path={"/qna"} element={<QnAPage/>}/>
+                    <Route path={"/qna/all"} element={<AllQnABoardPage/>}/>
+                    <Route path={"/qna/write"} element={<CreateQnAPage/>}/>
+                    <Route path={"/mypage"} element={<ProfilePage/>}/>
+                    <Route path={"/mypage/editInfo"} element={<EditInfoPage/>}/>
+                </Routes>
+            </Router>
+        </Provider>
     );
 }
 
