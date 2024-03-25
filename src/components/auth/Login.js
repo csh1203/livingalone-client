@@ -1,13 +1,14 @@
-import React, {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import React, {useEffect, useState} from 'react';
+import {useNavigate} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
+import {setUserPK} from '../../actions/userActions';
 import axios from 'axios';
 import '../../css/common/Style.css';
 import styles from '../../css/auth/Login.module.css'
 
 function Login() {
     const movePage = useNavigate();
-
-    // TODO: 유효성 검사
+    const dispatch = useDispatch();
     const [userId, setUserId] = useState('');
     const [userPassword, setUserPassword] = useState('');
 
@@ -19,19 +20,20 @@ function Login() {
 
         try {
             const response = await axios.post(`http://127.0.0.1:3001/users/login`, req);
-            console.log('로그인 성공:', response.data);
-            movePage('/mypage');
+            const loggedInUserPK = response.data.user.user_id;   // 로그인 후 받은 PK
+            dispatch(setUserPK(loggedInUserPK));
+
+            movePage('/');
         } catch (error) {
             console.error('로그인 실패:', error)
         }
     };
 
-
     return (
         <div className={styles.main}>
             <div className={styles['main-label']}>로그인</div>
             <div className={styles['login-box']}>
-                <form action="/login" method='POST' className={styles.forms}>
+                <div className={styles.forms}>
                     <div className={styles['input-container']}>
                         <input
                             type="text"
@@ -66,7 +68,7 @@ function Login() {
                         onClick={handleLogin}
                     >로그인
                     </button>
-                </form>
+                </div>
                 <div className={styles['easy-login-label']}>
                     간편하게 시작하기
                 </div>

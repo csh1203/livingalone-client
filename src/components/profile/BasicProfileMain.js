@@ -1,14 +1,50 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import '../../css/common/Style.css';
 import styles from '../../css/profile/BasicProfile.module.css'
 import { Icon } from '@iconify/react';
 import MyQnA from "./MyQnA";
 import MyComment from "./MyComment"
-import { Link } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
+import {useSelector} from "react-redux";
+import axios from "axios";
 
 function BasicProfileMain() {
+    const movePage = useNavigate();
     const [activeButtonIndex, setActiveButtonIndex] = useState(null);
     const [showLogoutAlert, setShowLogoutAlert] = useState(false);
+
+    const [userInfo, setUserInfo] = useState(null);
+    const [usersComments, setUsersComments] = useState([]);
+
+    // Redux 스토어에서 유저의 PK 값을 가져옴
+    const userPK = useSelector(state => state.user.userPK);
+
+    useEffect(() => {
+        // userPK가 있는 경우에만 사용자 정보 요청을 보냄
+        if (userPK) {
+            fetchUserInfo();
+        } else {
+            movePage('/login');
+        }
+    }, [userPK]);
+
+    const fetchUserInfo = async () => {
+        try {
+            const response = await axios.get(`http://127.0.0.1:3001/users/1`);
+            setUserInfo(response.data);
+        } catch (error) {
+            console.error('사용자 정보 요청 실패:', error);
+        }
+    };
+
+    const fetchCommentInfo = async () => {
+        try {
+            const response = await axios.get(`http://127.0.0.1:3001/answers/list/1`);
+            setUsersComments(response.data.data)
+        } catch (error) {
+            console.error('댓글 요청 실패:', error);
+        }
+    }
 
     return (
         <div className={styles['main']}>
@@ -21,8 +57,8 @@ function BasicProfileMain() {
                         </div>
                     </Link>
                 </div>
-                <div className={styles['name']}>홍길동님</div>
-                <div className={styles['email']}>holostand@gmail.com</div>
+                <div className={styles['name']}>{userInfo ? userInfo.name : "로딩중"}님</div>
+                <div className={styles['email']}>{userInfo ? userInfo.email : "로딩중"}</div>
                 <div className={styles['users-active']} onClick={() => setActiveButtonIndex(0)}>
                     <div className={styles['active-label-box']}>
                         <img src={activeButtonIndex === 0 ? '/images/mypage-icon/my_qna_select.svg' : '/images/mypage-icon/my_qna.svg'} />
@@ -35,7 +71,7 @@ function BasicProfileMain() {
                         <img src={activeButtonIndex === 1 ? '/images/mypage-icon/my_comment_select.svg' : '/images/mypage-icon/my_comment.svg'} />
                         <div className={styles['active-label']} style={{ color: activeButtonIndex === 1 ? '#036CE7' : '#1C1C1E'}}>내가 쓴 댓글</div>
                     </div>
-                    <div className={styles['count']}>1개</div>
+                    <div className={styles['count']}>{usersComments.length}개</div>
                 </div>
                 <hr className={styles['divider']}/>
                 <div className={styles['mention']}>자취 모르는게 있다면?</div>

@@ -1,10 +1,13 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styles from '../../css/common/Nav.module.css';
 import '../../css/common/Style.css';
 import { Icon } from '@iconify/react';
 import { Link } from 'react-router-dom';
+import {useSelector} from "react-redux";
 
-function Nav({imgPath}) {
+function Nav() {
+    const userPK = useSelector(state => state.user.userPK);
+
     return (
         <div className={styles.nav}>
             <Link to="/">
@@ -20,7 +23,6 @@ function Nav({imgPath}) {
                     <Link to="/articles">
                         <li className={styles['nav-item']}>자취 정보</li>
                     </Link>
-                    {/*<li className={styles['nav-item']}>자취력 테스트</li>*/}
                     <Link to="/CostCalculator">
                         <li className={styles['nav-item']}>비용 계산기</li>
                     </Link>
@@ -29,7 +31,7 @@ function Nav({imgPath}) {
                     </Link>
                 </ul>
                 <div className={styles['icons']}>
-                    <Link to="/login">
+                    <Link to={ userPK ? "/mypage" : "/login"}>
                         <Icon icon="icon-park-outline:people" className={styles['user-icon']} />
                     </Link>
                 </div>
