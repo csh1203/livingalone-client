@@ -4,11 +4,13 @@ import styles from '../../css/profile/BasicProfile.module.css'
 import { Icon } from '@iconify/react';
 import MyQnA from "./MyQnA";
 import MyComment from "./MyComment"
+import CancelAccount from "./CancelAccount";
 import { Link } from 'react-router-dom';
 
 function BasicProfileMain() {
-    const [activeButtonIndex, setActiveButtonIndex] = useState(null);
-    const [showLogoutAlert, setShowLogoutAlert] = useState(false);
+    const [ activeButtonIndex, setActiveButtonIndex ] = useState(null);
+    const [ showLogoutAlert, setShowLogoutAlert ] = useState(false);
+    const [ showCancelPopup, setShowCancelPopup ] = useState(false);
 
     return (
         <div className={styles['main']}>
@@ -43,7 +45,7 @@ function BasicProfileMain() {
                 <button className={styles['to-qna']}>Q&A 보러가기</button>
                 <div className={styles['logs']}>
                     <div className={styles['log-item']} onClick={() => setShowLogoutAlert(true)}>로그아웃</div>
-                    <div className={styles['log-item']}>계정탈퇴</div>
+                    <div className={styles['log-item']} onClick={() => setShowCancelPopup(true)}>계정탈퇴</div>
                 </div>
             </div>
 
@@ -51,7 +53,8 @@ function BasicProfileMain() {
                 {activeButtonIndex === null ? <></> : activeButtonIndex ? <MyComment /> : <MyQnA />}
             </div>
 
-            {showLogoutAlert && <LogoutAlertBox setShowLogoutAlert={setShowLogoutAlert}/>}
+            { showLogoutAlert && <LogoutAlertBox setShowLogoutAlert={setShowLogoutAlert}/> }
+            { showCancelPopup && <CancelAccount setShowCancelPopup={setShowCancelPopup}/> }
         </div>
     )
 }
