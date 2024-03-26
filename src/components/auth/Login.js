@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react';
-import {useNavigate} from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
-import {setUserPK} from '../../actions/userActions';
 import axios from 'axios';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { setUserPK } from '../../actions/userActions';
+import styles from '../../css/auth/Login.module.css';
 import '../../css/common/Style.css';
-import styles from '../../css/auth/Login.module.css'
 
 function Login() {
     const movePage = useNavigate();
@@ -20,7 +20,7 @@ function Login() {
 
         try {
             const response = await axios.post(`http://127.0.0.1:3001/users/login`, req);
-            const loggedInUserPK = response.data.user.user_id;   // 로그인 후 받은 PK
+            const loggedInUserPK = response.data.id;   // 로그인 후 받은 PK
             dispatch(setUserPK(loggedInUserPK));
 
             movePage('/');
