@@ -1,9 +1,56 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import '../../css/common/Style.css';
 import styles from '../../css/qna/CreateQnAForm.module.css';
-import { Icon } from '@iconify/react';
+import QnATags from "./QnATags";
 
 function CreateQnAFrom() {
+
+    const id = useSelector(state => state.user.userPk)
+
+    const movePage = useNavigate();
+
+    const [title, setTitle] = useState("");
+    const [tag, setTag] = useState("");
+    const [content, setContent] = useState("");
+
+    useEffect(()=> {
+        if (!id) {
+            alert('로그인이 필요합니다.');
+            movePage('/login')
+        }
+    }, id);
+
+    const handleTitleChange = (event) => {
+        setTitle(event.target.value);
+    };
+
+    const handleTagChange = (event) => {
+        setTag(event.target.value);
+    };
+
+    const handleContentChange = (event) => {
+        setContent(event.target.value);
+    };
+
+    const handleSubmit = async () => {
+        try {
+            const response = await axios.post(`http://localhost:3001/questions/${id}`, {
+                title: title,
+                tag: tag,
+                views: 0,
+                content: content,
+                user_id: id,
+            });
+
+            console.log("글이 성공적으로 전송되었습니다.", response.data);
+        } catch (error) {
+            console.error("글 전송 중 오류가 발생했습니다.", error);
+        }
+    };
+
     return (
         <div className={styles['root']}>
             <div className={styles['main']}>
@@ -13,11 +60,15 @@ function CreateQnAFrom() {
                             className={styles['title-input']}
                             type="text"
                             placeholder="제목을 입력해 주세요"
+                            value={title}
+                            onChange={handleTitleChange}
                         />
                         <input
                             className={styles['tag-input']}
                             type="text"
                             placeholder="게시물 태그를 입력해 주세요"
+                            value={tag}
+                            onChange={handleTagChange}
                         />
                     </div>
                     <div className={styles['content-form']}>
@@ -83,39 +134,24 @@ function CreateQnAFrom() {
                             className={styles['content-textarea']}
                             placeholder="궁금한 내용을 질문으로 작성해 주세요.
                         다만 개인정보(실명, 전화번호,  계정 정보)가 포함된 정보들은 게시될 수 없습니다."
+                            value={content}
+                            onChange={handleContentChange}
                         />
                     </div>
                 </div>
                 <div className={styles['tag-container']}>
                     <div className={styles['text-info']}>
-                        빠른 답변을 원하시나요? <br/>
+                        빠른 답변을 원하시나요? <br />
                         게시물 태그를 이용해보세요
                     </div>
                     <label>인기 태그</label>
-                    <div className={styles['tags']}>
-                        <div className={styles['tag-item']}>
-                            <div className={styles['tag-number']}>1</div>
-                            <div className={styles['tag-content']}>비용</div>
-                        </div>
-                        <div className={styles['tag-item']}>
-                            <div className={styles['tag-number']}>2</div>
-                            <div className={styles['tag-content']}>생활꿀팁</div>
-                        </div>
-                        <div className={styles['tag-item']}>
-                            <div className={styles['tag-number']}>3</div>
-                            <div className={styles['tag-content']}>인테리어</div>
-                        </div>
-                        <div className={styles['tag-item']}>
-                            <div className={styles['tag-number']}>4</div>
-                            <div className={styles['tag-content']}>주거</div>
-                        </div>
-                    </div>
+                    <QnATags />
                 </div>
             </div>
             <div className={styles['buttons']}>
-                <button className={styles['main-button']}>임시저장</button>
+                <button className={styles['main-button']} onClick={handleSubmit}>작성완료</button>
+                <button className={styles['sub-button']}>임시저장</button>
                 <button className={styles['sub-button']}>작성취소</button>
-                <button className={styles['sub-button']}>작성완료</button>
             </div>
         </div>
     )

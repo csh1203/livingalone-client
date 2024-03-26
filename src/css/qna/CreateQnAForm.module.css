@@ -99,12 +99,15 @@ textarea::placeholder {
 
 .buttons {
     margin: 40px 0 0 0;
+    display: flex;
 }
 
-button {
+.main-button,
+.sub-button {
+    width: 6vw;
+    padding: 10px 20px;
     outline: none;
     border: none;
-    padding: 10px 20px;
     font-size: 0.9rem;
     font-weight: 400;
     border-radius: 8px;
@@ -112,7 +115,7 @@ button {
 }
 
 .main-button {
-    margin: 0 122px 0 0;
+    margin: 0 90px 0 0;
     color: #fff;
     background-color: #036CE7;
 }
