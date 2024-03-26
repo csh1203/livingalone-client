@@ -1,14 +1,54 @@
-import React, {useEffect, useState} from "react";
-import '../../css/common/Style.css';
-import styles from '../../css/profile/BasicProfile.module.css'
 import { Icon } from '@iconify/react';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Link, useNavigate } from 'react-router-dom';
+import '../../css/common/Style.css';
+import styles from '../../css/profile/BasicProfile.module.css';
+import CancelAccount from "./CancelAccount";
+import MyComment from "./MyComment";
 import MyQnA from "./MyQnA";
-import MyComment from "./MyComment"
-import { Link } from 'react-router-dom';
 
 function BasicProfileMain() {
-    const [activeButtonIndex, setActiveButtonIndex] = useState(null);
-    const [showLogoutAlert, setShowLogoutAlert] = useState(false);
+    const movePage = useNavigate();
+    
+    const [ activeButtonIndex, setActiveButtonIndex ] = useState(null);
+    const [ showLogoutAlert, setShowLogoutAlert ] = useState(false);
+    const [ showCancelPopup, setShowCancelPopup ] = useState(false);
+
+    const [userInfo, setUserInfo] = useState(null);
+    const [usersComments, setUsersComments] = useState([]);
+
+    // Redux 스토어에서 유저의 PK 값을 가져옴
+    const userPK = useSelector(state => state.user.userPK);
+
+    useEffect(() => {
+        // userPK가 있는 경우에만 사용자 정보 요청을 보냄
+        if (userPK) {
+            fetchUserInfo();
+            fetchCommentInfo();
+        } else {
+            movePage('/login');
+        }
+    }, [userPK]);
+
+    const fetchUserInfo = async () => {
+        try {
+            const response = await axios.get(`http://127.0.0.1:3001/users/1`);
+            setUserInfo(response.data);
+        } catch (error) {
+            console.error('사용자 정보 요청 실패:', error);
+        }
+    };
+
+    const fetchCommentInfo = async () => {
+        try {
+            const response = await axios.get(`http://127.0.0.1:3001/answers/list/1`);
+            setUsersComments(response.data.data)
+        } catch (error) {
+            console.error('댓글 요청 실패:', error);
+        }
+    }
 
     return (
         <div className={styles['main']}>
