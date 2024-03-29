@@ -107,12 +107,14 @@ button {
     font-weight: 400;
     font-size: 0.95rem;
     border-radius: 8px;
+    height: 50px;
 }
 
 .to-info {
     background-color: var(--primary-500);
     color: #fff;
     margin: 0 0 14px 0;
+    border: none;
 }
 
 .to-qna {
