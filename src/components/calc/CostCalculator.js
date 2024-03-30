@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import '../../css/common/Style.css';
 import styles from '../../css/calc/CostCalculator.module.css'
 
@@ -7,12 +7,16 @@ import LivingCost from "./CalcLivingCost";
 import Etc from "./CalcEtc"
 
 function MainCostCalculator() {
-    const [content, setContent] = useState('categoryHome');
+    const [ content, setContent ] = useState('categoryHome');
+    const [ housingCost, setHousingCost ] = useState(0)
+    const [ livingCost, setLivingCost ] = useState(0);
+    const [ etcCost, setEtcCost] = useState(0);
+    const [ totalCost, setTotalCost ] = useState(0);
 
     const selectComponent = {
-        categoryHome: <HousingCost />,
-        categoryLiving: <LivingCost />,
-        categoryAnother: <Etc />
+        categoryHome: <HousingCost setHousingCost={setHousingCost}/>,
+        categoryLiving: <LivingCost setLivingCost={setLivingCost}/>,
+        categoryAnother: <Etc setEtcCost={setEtcCost}/>
     };
 
     const categoryHome = React.useRef(null);
@@ -36,6 +40,14 @@ function MainCostCalculator() {
         setContent(name);
     }
 
+    useEffect(() => {
+        setTotalCost(housingCost + livingCost + etcCost)
+    }, [housingCost, livingCost, etcCost])
+
+    const getUnit = name => {
+        return name.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    }
+
     return(
         <div className={styles['main']}>
             <div className={styles.main}>
@@ -44,22 +56,23 @@ function MainCostCalculator() {
                     <div className={styles['category']} onClick={() => clickCategory('categoryHome')} ref={categoryHome}>
                         <img src="/images/calc-home.png"></img>
                         <div className={styles['category-title']}>주거비용</div>
-                        <div className={styles['category-amount']}>32,000</div>
+                        <div className={styles['category-amount']}>{getUnit(housingCost)}
+                        </div>
                     </div>
                     <div className={styles['category']} onClick={() => clickCategory('categoryLiving')} ref={categoryLiving}>
                         <img src="/images/calc-living.png"></img>
                         <div className={styles['category-title']}>생활비</div>
-                        <div className={styles['category-amount']}>32,000</div>
+                        <div className={styles['category-amount']}>{getUnit(livingCost)}</div>
                     </div>
                     <div className={styles['category']} onClick={() => clickCategory('categoryAnother')} ref={categoryAnother}>
                         <img src="/images/calc-another.png"></img>
                         <div className={styles['category-title']}>기타</div>
-                        <div className={styles['category-amount']}>32,000</div>
+                        <div className={styles['category-amount']}>{getUnit(etcCost)}</div>
                     </div>
                     <div className={styles['category']}>
                         <img src="/images/calc-total.png"></img>
                         <div className={styles['category-title']}>총 금액</div>
-                        <div className={styles['category-amount']}>32,000</div>
+                        <div className={styles['category-amount']}>{getUnit(totalCost)}</div>
                     </div>
                 </div>
             </div>
@@ -71,7 +84,10 @@ function MainCostCalculator() {
                         <div className={styles['sum-container']}>
                             <div className={styles['sum-div']}>
                                 <div className={styles['sum-title']}>합계</div>
-                                <div className={styles['sum-input']}></div>
+                                <div className={styles['sum-input']}>
+                                    {content === 'categoryHome' ? getUnit(housingCost) : 
+                                        content === 'categoryLiving' ? getUnit(livingCost) : getUnit(etcCost)}
+                                </div>
                             </div>
                         </div>
                         
