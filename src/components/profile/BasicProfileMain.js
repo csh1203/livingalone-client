@@ -18,15 +18,18 @@ function BasicProfileMain() {
 
     const [userInfo, setUserInfo] = useState(null);
     const [usersComments, setUsersComments] = useState([]);
+    const [userQnA, setUserQnA] = useState([]);
 
     // Redux 스토어에서 유저의 PK 값을 가져옴
     const userPK = useSelector(state => state.user.userPK);
 
     useEffect(() => {
         // userPK가 있는 경우에만 사용자 정보 요청을 보냄
+        console.log(userPK);
         if (userPK) {
             fetchUserInfo();
             fetchCommentInfo();
+            fetchQnAInfo();
         } else {
             movePage('/login');
         }
@@ -45,6 +48,16 @@ function BasicProfileMain() {
         try {
             const response = await axios.get(`http://127.0.0.1:3001/answers/list/1`);
             setUsersComments(response.data.data)
+        } catch (error) {
+            console.error('댓글 요청 실패:', error);
+        }
+    }
+
+    const fetchQnAInfo = async () => {
+        try {
+            const response = await axios.get(`http://127.0.0.1:3001/questions/1`);
+            console.log(response.data.question);
+            setUserQnA(response.data.data)
         } catch (error) {
             console.error('댓글 요청 실패:', error);
         }
