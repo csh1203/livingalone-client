@@ -1,6 +1,8 @@
-import React, {useState,useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import '../../css/common/Style.css';
-import styles from '../../css/calc/CostCalculator.module.css'
+import styles from '../../css/calc/CalcBox.module.css'
+
+import CalcInput from "./CalcInput";
 
 function CalcEtc({ setEtcCost }){
     const [ eachEtcCost, setEachEtcCost] = useState({
@@ -24,27 +26,28 @@ function CalcEtc({ setEtcCost }){
 
     return(
         <div>
-            <div className={styles['input2-container']}>
+            <div className={styles['etc-container']}>
                 <div className={styles['cell-phone-bill-div']}>
                     <div className={styles['input-title']}>핸드폰 요금</div>
-                    <input type="text" placeholder="입력해주세요" className={`${styles['cell-phone-input']} ${styles['input-margin']} ${styles['input-style']}`}
-                        value={eachEtcCost.phone} onChange={e => {setEachEtcCost({...eachEtcCost, phone: e.target.value})}}/>
+                    <CalcInput placeholder="입력해주세요" value={eachEtcCost.phone} 
+                        onChange={e => {setEachEtcCost({...eachEtcCost, phone: e.target.value})}}/>
+
                 </div>
                 <div className={styles['subscription-fee-div']}>
                     <div className={styles['input-title']}>구독료</div>
-                    <input type="text" placeholder="입력해주세요" className={`${styles['subscription-input']} ${styles['input-margin']} ${styles['input-style']}`}
-                        value={eachEtcCost.subscribe} onChange={e => {setEachEtcCost({...eachEtcCost, subscribe: e.target.value})}}/>
+                    <CalcInput placeholder="입력해주세요" value={eachEtcCost.subscribe} 
+                        onChange={e => {setEachEtcCost({...eachEtcCost, subscribe: e.target.value})}}/>
                 </div>
             </div>
             <div className={styles['insurance-cost-div']}>
                 <div className={styles['input-title']}>보험비</div>
-                <input type="text" placeholder="입력해주세요" className={`${styles['insurance-input']} ${styles['input-margin']} ${styles['input-style']}`}
-                    value={eachEtcCost.insurance} onChange={e => {setEachEtcCost({...eachEtcCost, insurance: e.target.value})}}/>
+                <CalcInput placeholder="입력해주세요" value={eachEtcCost.insurance} 
+                    onChange={e => {setEachEtcCost({...eachEtcCost, insurance: e.target.value})}}/>
             </div>
             <div className={styles['emergency-fund-div']}>
                 <div className={styles['input-title']}>비상금</div>
-                <input type="text" placeholder="입력해주세요" className={`${styles['emergency-input']} ${styles['input-margin']} ${styles['input-style']}`}
-                    value={eachEtcCost.emergency} onChange={e => {setEachEtcCost({...eachEtcCost, emergency: e.target.value})}}/>
+                <CalcInput placeholder="입력해주세요" value={eachEtcCost.emergency} 
+                    onChange={e => {setEachEtcCost({...eachEtcCost, emergency: e.target.value})}}/>
             </div>
         </div>
         
