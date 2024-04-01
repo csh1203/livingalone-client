@@ -8,27 +8,19 @@ import QnATags from "./QnATags";
 
 function CreateQnAFrom() {
 
-    const id = useSelector(state => state.user.userPk)
-
+    const userPK = useSelector(state => state.user.userPK);
     const movePage = useNavigate();
 
     const [title, setTitle] = useState("");
     const [tag, setTag] = useState("");
     const [content, setContent] = useState("");
 
-    useEffect(()=> {
-        if (!id) {
-            alert('로그인이 필요합니다.');
-            movePage('/login')
-        }
-    }, id);
-
     const handleTitleChange = (event) => {
         setTitle(event.target.value);
     };
 
     const handleTagChange = (event) => {
-        setTag(event.target.value);
+        setTag(event.target.value.replaceAll(' ', ''));
     };
 
     const handleContentChange = (event) => {
@@ -37,19 +29,26 @@ function CreateQnAFrom() {
 
     const handleSubmit = async () => {
         try {
-            const response = await axios.post(`http://localhost:3001/questions/${id}`, {
-                title: title,
-                tag: tag,
-                views: 0,
-                content: content,
-                user_id: id,
-            });
+            if (userPK) {
+                const response = await axios.post(`http://localhost:3001/questions`, {
+                    title: title,
+                    tag: tag,
+                    views: 0,
+                    content: content,
+                    user_id: userPK,
+                });
 
-            console.log("글이 성공적으로 전송되었습니다.", response.data);
+                console.log("글이 성공적으로 전송되었습니다.", response.data);
+            } else {
+                alert('로그인이 필요한 기능입니다.');
+                console.log(userPK)
+            }
         } catch (error) {
             console.error("글 전송 중 오류가 발생했습니다.", error);
         }
     };
+
+    useEffect(() => console.log(userPK), [userPK]);
 
     return (
         <div className={styles['root']}>
