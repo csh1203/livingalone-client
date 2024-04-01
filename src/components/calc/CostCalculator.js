@@ -2,43 +2,23 @@ import React, {useState, useEffect} from "react";
 import '../../css/common/Style.css';
 import styles from '../../css/calc/CostCalculator.module.css'
 
+import CalcCategory from "./CalcCategory";
 import HousingCost from "./CalcHousingCost";
 import LivingCost from "./CalcLivingCost";
 import Etc from "./CalcEtc"
 
 function MainCostCalculator() {
-    const [ content, setContent ] = useState('categoryHome');
-    const [ housingCost, setHousingCost ] = useState(0)
+    const [ housingCost, setHousingCost ] = useState(0);
     const [ livingCost, setLivingCost ] = useState(0);
     const [ etcCost, setEtcCost] = useState(0);
     const [ totalCost, setTotalCost ] = useState(0);
+    const [ content, setContent ] = useState('categoryHome');
 
     const selectComponent = {
         categoryHome: <HousingCost setHousingCost={setHousingCost}/>,
         categoryLiving: <LivingCost setLivingCost={setLivingCost}/>,
         categoryAnother: <Etc setEtcCost={setEtcCost}/>
     };
-
-    const categoryHome = React.useRef(null);
-    const categoryLiving = React.useRef(null);
-    const categoryAnother = React.useRef(null);
-
-    const refs = {
-        categoryHome: categoryHome,
-        categoryLiving: categoryLiving,
-        categoryAnother: categoryAnother
-    };
-
-    const clickCategory = (name) => {;
-        const ref = refs[name];
-        categoryHome.current.style = "top: -110px";
-        categoryLiving.current.style = "top: -110px";
-        categoryAnother.current.style = "top: -110px";
-        if (ref && ref.current) {
-            ref.current.style.top = "-135px";
-        }
-        setContent(name);
-    }
 
     useEffect(() => {
         setTotalCost(housingCost + livingCost + etcCost)
@@ -48,33 +28,20 @@ function MainCostCalculator() {
         return name.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     }
 
+    const toCategory = {
+        housingCost: housingCost,
+        livingCost: livingCost,
+        etcCost: etcCost,
+        totalCost: totalCost,
+        getUnit: getUnit,
+        setContent: setContent
+    }
+
     return(
         <div className={styles['main']}>
-            <div className={styles.main}>
+            <div className={styles['main']}>
                 <div className={styles['back-img-div']} style={{backgroundImage: 'url(/images/calc-back.png)'}}></div>
-                <div className={styles['category-div']}>
-                    <div className={styles['category']} onClick={() => clickCategory('categoryHome')} ref={categoryHome}>
-                        <img src="/images/calc-home.png"></img>
-                        <div className={styles['category-title']}>주거비용</div>
-                        <div className={styles['category-amount']}>{getUnit(housingCost)}
-                        </div>
-                    </div>
-                    <div className={styles['category']} onClick={() => clickCategory('categoryLiving')} ref={categoryLiving}>
-                        <img src="/images/calc-living.png"></img>
-                        <div className={styles['category-title']}>생활비</div>
-                        <div className={styles['category-amount']}>{getUnit(livingCost)}</div>
-                    </div>
-                    <div className={styles['category']} onClick={() => clickCategory('categoryAnother')} ref={categoryAnother}>
-                        <img src="/images/calc-another.png"></img>
-                        <div className={styles['category-title']}>기타</div>
-                        <div className={styles['category-amount']}>{getUnit(etcCost)}</div>
-                    </div>
-                    <div className={styles['category']}>
-                        <img src="/images/calc-total.png"></img>
-                        <div className={styles['category-title']}>총 금액</div>
-                        <div className={styles['category-amount']}>{getUnit(totalCost)}</div>
-                    </div>
-                </div>
+                <CalcCategory toCategory={toCategory}/>
             </div>
             
             <div className={styles["main back-test"]}>

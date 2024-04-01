@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from "react";
 import '../../css/common/Style.css';
-import styles from '../../css/calc/CostCalculator.module.css';
+import styles from '../../css/calc/CalcBox.module.css'
+import CalcInput from "./CalcInput";
 
-function CalcLivingCost({ setLivingCost }){
-    const selectList = ["직접입력", "500,000(기본)"];
-    const [Selected, setSelected] = useState("");
+function CalcLivingCost({setLivingCost}){
     const [ eachLivingCost, setEachLivingCost ] = useState({
         type: true,
         food: '',
@@ -12,6 +11,10 @@ function CalcLivingCost({ setLivingCost }){
         publicTransport: '',
         ownCar: ''
     })
+
+    const selectList = ["직접입력", "500,000(기본)"];
+    const [Selected, setSelected] = useState("");
+
 
     const handleSelect = (e) => {
         setSelected(e.target.value);
@@ -35,7 +38,7 @@ function CalcLivingCost({ setLivingCost }){
 
     return(
         <div>
-            <div className={styles['input1-container']}>
+            <div className={styles['living-container']}>
                 <div className={styles['food-expenses-div']}>
                     <div className={styles['input-title']}>식비</div>
                     <div className={`${styles['monthly-input-div']} ${styles['input-margin']}`}>
@@ -50,8 +53,8 @@ function CalcLivingCost({ setLivingCost }){
                 </div>
                 <div className={styles['daily-necessity-div']}>
                     <div className={styles['input-title']}>생필품</div>
-                    <input type="text" placeholder="입력해주세요" className={`${styles['daily-necessity-input']} ${styles['input-margin']} ${styles['input-style']}`}
-                        value={eachLivingCost.dailyNecessity} onChange={e => {setEachLivingCost({...eachLivingCost, dailyNecessity: e.target.value})}}/>
+                    <CalcInput placeholder="입력해주세요" value={eachLivingCost.dailyNecessity} 
+                        onChange={e => {setEachLivingCost({...eachLivingCost, dailyNecessity: e.target.value})}}/>
                 </div>
             </div>
             <div className={styles['transportation-cost-div']}>
@@ -78,15 +81,15 @@ function CalcLivingCost({ setLivingCost }){
 
 function PublicTransport({ eachLivingCost, setEachLivingCost }){
     return(
-        <input type="text" placeholder="입력해주세요" className={`${styles['transportation-input']} ${styles['input-margin']} ${styles['input-style']}`}
-            value={eachLivingCost.publicTransport} onChange={e => {setEachLivingCost({...eachLivingCost, publicTransport: e.target.value})}}/>
+        <CalcInput placeholder="입력해주세요" value={eachLivingCost.publicTransport} 
+            onChange={e => {setEachLivingCost({...eachLivingCost, publicTransport: e.target.value})}}/>
     )
 }
 
 function OwnCar({ eachLivingCost, setEachLivingCost }){
     return(
-        <input type="text" placeholder="기름값" className={`${styles['transportation-input']} ${styles['input-margin']} ${styles['input-style']}`}
-        value={eachLivingCost.ownCar} onChange={e => {setEachLivingCost({...eachLivingCost, ownCar: e.target.value})}}/>
+        <CalcInput placeholder="기름값" value={eachLivingCost.ownCar} 
+            onChange={e => {setEachLivingCost({...eachLivingCost, ownCar: e.target.value})}}/>
     )
 }
 

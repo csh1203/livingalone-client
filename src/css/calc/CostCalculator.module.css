@@ -10,34 +10,6 @@ main{
     background-blend-mode: multiply;
     background-size: cover;
 }
-.category-div{
-    display: flex;
-    justify-content: center;
-    column-gap: 16px;
-}
-.category{
-    position: relative;
-    top: -110px;
-    width: 266px;
-    padding-left: 38px;
-    padding-top: 36px;
-    height: 210px;
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.06);
-    transition: all 0.2s;
-    cursor: pointer;
-}
-.category-title{
-    margin-top: 23px;
-    color: var(--gray-900, #1F1F1F);
-}
-
-.category-amount{
-    font-size: 32px;
-    color: var(--gray-900, #1F1F1F);
-    font-weight: 700;
-}
 
 .input-div{
     position: relative;
@@ -51,55 +23,13 @@ main{
     transform: translate(-50%, 0);
     margin-bottom: 44px;
 }
-.input-title,
-.transportation-title{
-    font-size: 20px;
-    color: var(--gray-900, #1F1F1F);
-}
-.transportation-title{
-    margin: 32px 0 20px 0;
-}
-.transportation-choose{
-    display: flex;
-    column-gap: 20px;
-}
-.transportation-btn-div{
-    display: flex;
-    align-items: center;
-    column-gap: 4px;
-}
-.radio-div{
-    margin-top: 22px;
-}
-
-.input-radio{
-    margin-right: 20px;
-}
-.input-margin{
-    margin-top: 24px;
-}
-.input-style{
-    width: 165px;
-    height: 48px;
-    padding-left: 12px;
-    border-radius: 4px;
-    border: 1px solid var(--gray-100, #EBEBEB);
-    background: #FFF;
-    margin-right: 24px;
-}
-.input-subtitle-div{
-    display: flex;
-    margin-top: 32px;
-    color: var(--gray-900, #1F1F1F);
-    font-size: 20px;
-    column-gap: 135px;
-}
 .pin-container{
     position: absolute;
     bottom: 32px;
     width: calc(100% - 40px * 2);
 }
 .sum-container{
+    height: 48px;
     width: 100%;
     display: flex;
     justify-content: end;
@@ -111,7 +41,6 @@ main{
     align-items: center;
     border-radius: 4px;
     border: solid 1px #EBEBEB;
-    margin-top: 69px;
     color: #ADADAD;
 }
 .sum-title{
@@ -151,44 +80,6 @@ main{
     background-color: #036CE7;
     color: white;
 }
-.input1-container{
-    display: flex;
-    column-gap: 31px;
-}
-.input2-container{
-    display: flex;
-    column-gap: 24px;
-}
-.insurance-cost-div,
-.emergency-fund-div{
-    margin-top: 32px;
-}
-.radio-btn-div{
-    margin-top: 24px;
-    margin-bottom: 24px;
-    display: flex;
-    column-gap: 20px;
-}
-.monthly-btn-div,
-.charter-btn-div{
-    display: flex;
-    column-gap: 3px;
-    align-items: center;
-}
-.radio-btn{
-    width: 20px;
-    height: 20px;
-    appearance: none;
-    border: none;
-    border-radius: 50%;
-    background-color: var(--gray-100);
-    margin-right: 4px;
-}
 
-.radio-btn:checked{
-    box-shadow: 0 0 0 1px var(--primary-500);
-    border: 4px solid white;
-    background-color: var(--primary-500);
-}
 
 
