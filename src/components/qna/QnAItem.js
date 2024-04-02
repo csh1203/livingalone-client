@@ -1,11 +1,15 @@
 import React from "react";
 
+import { useNavigate } from "react-router-dom";
 import '../../css/common/Style.css';
 import styles from '../../css/qna/QnAItem.module.css';
 
 function QnAItem({ id, title, content, createdAt }) {
+
+    const movePage = useNavigate();
+
     return (
-        <div className={styles['item-container']}>
+        <div onClick={() => movePage(`/qna/post/${id}`)} className={styles['item-container']}>
             <div className={styles['q-content']}>
                 {title}
             </div>
