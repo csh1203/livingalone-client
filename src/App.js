@@ -1,39 +1,40 @@
 import React from "react";
+import { Provider } from 'react-redux'; // 추가
 import {
-    BrowserRouter as Router,
-    Link,
     Route,
+    BrowserRouter as Router,
     Routes
 } from 'react-router-dom';
-import { Provider } from 'react-redux'; // 추가
 import store from './store'; // 추가
 
-import Main from "./pages/Main";
-import LoginPage from "./pages/LoginPage";
-import CostCalculatorPage from "./pages/CostCalculatorPage";
-import JoinPage from "./pages/JoinPage";
-import ArticlePage from "./pages/ArticlePage";
-import QnAPage from "./pages/QnAPage";
 import AllQnABoardPage from "./pages/AllQnABoardPage";
+import ArticlePage from "./pages/ArticlePage";
+import CostCalculatorPage from "./pages/CostCalculatorPage";
 import CreateQnAPage from "./pages/CreateQnAPage";
-import ProfilePage from "./pages/ProfilePage";
 import EditInfoPage from "./pages/EditInfoPage";
+import JoinPage from "./pages/JoinPage";
+import LoginPage from "./pages/LoginPage";
+import Main from "./pages/Main";
+import ProfilePage from "./pages/ProfilePage";
+import QnAPage from "./pages/QnAPage";
+import QnAPostPage from "./pages/QnAPostPage";
 
 function App() {
     return (
         <Provider store={store}> {/* Provider 추가 */}
             <Router>
                 <Routes>
-                    <Route path={"/"} element={<Main/>}/>
-                    <Route path={"/login"} element={<LoginPage/>}/>
-                    <Route path={"/join"} element={<JoinPage/>}/>
-                    <Route path={"/costCalculator"} element={<CostCalculatorPage/>}/>
-                    <Route path={"/articles"} element={<ArticlePage/>}/>
-                    <Route path={"/qna"} element={<QnAPage/>}/>
-                    <Route path={"/qna/all"} element={<AllQnABoardPage/>}/>
-                    <Route path={"/qna/write"} element={<CreateQnAPage/>}/>
-                    <Route path={"/mypage"} element={<ProfilePage/>}/>
-                    <Route path={"/mypage/editInfo"} element={<EditInfoPage/>}/>
+                    <Route path={"/"} element={<Main />} />
+                    <Route path={"/login"} element={<LoginPage />} />
+                    <Route path={"/join"} element={<JoinPage />} />
+                    <Route path={"/costCalculator"} element={<CostCalculatorPage />} />
+                    <Route path={"/articles"} element={<ArticlePage />} />
+                    <Route path={"/qna"} element={<QnAPage />} />
+                    <Route path={"/qna/all"} element={<AllQnABoardPage />} />
+                    <Route path={"/qna/write"} element={<CreateQnAPage />} />
+                    <Route path={"/mypage"} element={<ProfilePage />} />
+                    <Route path={"/mypage/editInfo"} element={<EditInfoPage />} />
+                    <Route path={"/qna/post/:id"} element={<QnAPostPage />} />
                 </Routes>
             </Router>
         </Provider>
