@@ -1,0 +1,27 @@
+.box{
+    width: 460px;
+    padding: 48px;
+    border-radius: 16px;
+    border: 1px solid var(--gray-300);
+    margin-bottom: 30px;
+}
+
+.scope-bar{
+    display: flex;
+    height: 61px;
+}
+
+.scope-bar > div{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.scope-btn-false{
+    color: var(--gray-600);
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.scope-btn-true{
+    border-bottom: 3px solid var(--gray-900);
+}
