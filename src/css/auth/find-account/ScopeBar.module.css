@@ -1,0 +1,20 @@
+.scope-bar{
+    display: flex;
+    width: 100%;
+    height: 61px;
+}
+
+.scope-bar > div{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.scope-btn-false{
+    color: var(--gray-600);
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.scope-btn-true{
+    border-bottom: 3px solid var(--gray-900);
+}

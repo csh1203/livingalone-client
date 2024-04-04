@@ -1,0 +1,15 @@
+main{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 24px;
+    background: url("../../../../public/images/auth/auth_bg.png");
+}
+
+.title{
+    text-align: center;
+    font-weight: 500;
+    font-size: 28px;
+}

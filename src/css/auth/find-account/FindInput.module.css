@@ -1,0 +1,7 @@
+.input{
+    height: 56px;
+    border-bottom: 1px solid var(--gray-200);
+}
+.input::placeholder{
+    color: var(--gray-600);
+}

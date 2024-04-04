@@ -1,0 +1,7 @@
+.box{
+    width: 460px;
+    padding: 48px;
+    border-radius: 16px;
+    border: 1px solid var(--gray-300);
+    margin-bottom: 30px;
+}

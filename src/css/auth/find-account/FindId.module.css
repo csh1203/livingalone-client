@@ -1,0 +1,19 @@
+.find-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title{
+    margin-top: 40px;
+    text-align: center;
+    font-size: 15px;
+    margin-bottom: 48px;
+}
+
+.input-box{
+    display: grid;
+    row-gap: 32px;
+    width: 100%;
+    margin-bottom: 40px;
+}
