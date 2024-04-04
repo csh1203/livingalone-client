@@ -18,6 +18,7 @@ import Main from "./pages/Main";
 import ProfilePage from "./pages/ProfilePage";
 import QnAPage from "./pages/QnAPage";
 import QnAPostPage from "./pages/QnAPostPage";
+import FindAccountPage from "./pages/FindAccountPage";
 
 function App() {
     return (
@@ -35,6 +36,7 @@ function App() {
                     <Route path={"/mypage"} element={<ProfilePage />} />
                     <Route path={"/mypage/editInfo"} element={<EditInfoPage />} />
                     <Route path={"/qna/post/:id"} element={<QnAPostPage />} />
+                    <Route path={"/findAccount"} element={<FindAccountPage/>} />
                 </Routes>
             </Router>
         </Provider>
