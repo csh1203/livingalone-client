@@ -1,0 +1,14 @@
+.show-pw{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.icon{
+    margin: 10px 0 40px 0;
+}
+
+.change-pw{
+    font-size: 15px;
+    text-align: center;
+}
