@@ -19,8 +19,8 @@ function FindId({ scope, setScope, setShowId }) {
                 아이디를 잃어버리셨나요? <br/> 하단의 정보를 상세히 입력하세요
             </div>
             <div className={styles['input-box']}>
-                <FindInput placeholder="닉네임을 입력하세요" name="nickname" inputValue={inputValue} setInputValue={setInputValue}/>
-                <FindInput placeholder="이메일을 입력하세요" name="email" inputValue={inputValue} setInputValue={setInputValue}/>
+                <FindInput placeholder="닉네임을 입력하세요" name="nickname" inputValue={inputValue} setInputValue={setInputValue} icon={false}/>
+                <FindInput placeholder="이메일을 입력하세요" name="email" inputValue={inputValue} setInputValue={setInputValue} icon={false}/>
             </div>
             <SubmitBtn name="다음" clickEvent={() => setShowId(true)}/>
         </div>
