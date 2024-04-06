@@ -9,4 +9,9 @@
     border: none;
     color: white;
     font-weight: 500;
+    margin-top: 40px;
+}
+
+.no-check{
+    background-color: var(--primary-300);
 }
