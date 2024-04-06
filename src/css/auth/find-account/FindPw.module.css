@@ -1,0 +1,10 @@
+.title{
+    text-align: center;
+    font-size: 15px;
+    margin: 40px 0 40px 0;
+}
+
+.input-box{
+    display: grid;
+    row-gap: 32px;
+}
