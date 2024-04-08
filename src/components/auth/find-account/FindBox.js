@@ -9,12 +9,12 @@ import ShowPw from './ShowPw'
 
 function FindBox(){
     const [ scope, setScope ] = useState(true);
-    const [ showId, setShowId ] = useState(false);
-    const [ showPw, setShowPw ] = useState(false);
+    const [ showId, setShowId ] = useState('');
+    const [ showPw, setShowPw ] = useState('');
 
     return(
         <div className={styles['box']}>
-            { showId ? <ShowId/> : showPw ? <ShowPw/> : 
+            { showId ? <ShowId id={showId}/> : showPw ? <ShowPw email={showPw}/> : 
                 scope ? <FindId scope={scope} setScope={setScope} setShowId={setShowId}/> : 
                 <FindPw scope={scope} setScope={setScope} setShowPw={setShowPw}/>}
         </div>
