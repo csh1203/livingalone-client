@@ -1,4 +1,5 @@
 import axios from 'axios';
+import DOMPurify from 'dompurify';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import '../../css/common/Style.css';
@@ -37,8 +38,9 @@ function QnAPost() {
                 <span className={styles['title']}>{post.title}</span>
             </div>
 
-            <div className={styles['content-container']}>
-                {post.content}
+            <div className={styles['content-container']} dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(String(post.content)),
+            }}>
             </div>
 
             <div className={styles['info-container']}>

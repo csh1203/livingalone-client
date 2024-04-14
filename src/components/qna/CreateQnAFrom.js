@@ -1,5 +1,6 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import ReactQuill from "react-quill";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import '../../css/common/Style.css';
@@ -7,9 +8,17 @@ import styles from '../../css/qna/CreateQnAForm.module.css';
 import QnATags from "./QnATags";
 
 function CreateQnAFrom() {
-
     const userPK = useSelector(state => state.user.userPK);
     const movePage = useNavigate();
+
+    const modules = {
+        toolbar: [
+            [{ header: '1' }, { header: '2' }],
+            ['bold', 'italic', 'underline', 'strike'],
+            [{ list: 'ordered' }, { list: 'bullet' }],
+            ['blockquote', 'code-block', 'link'],
+        ],
+    };
 
     const [title, setTitle] = useState("");
     const [tag, setTag] = useState("");
@@ -39,6 +48,7 @@ function CreateQnAFrom() {
                 });
 
                 console.log("글이 성공적으로 전송되었습니다.", response.data);
+                movePage('/qna')
             } else {
                 alert('로그인이 필요한 기능입니다.');
                 console.log(userPK)
@@ -47,8 +57,6 @@ function CreateQnAFrom() {
             console.error("글 전송 중 오류가 발생했습니다.", error);
         }
     };
-
-    useEffect(() => console.log(userPK), [userPK]);
 
     return (
         <div className={styles['root']}>
@@ -70,73 +78,12 @@ function CreateQnAFrom() {
                             onChange={handleTagChange}
                         />
                     </div>
-                    <div className={styles['content-form']}>
-                        <div className={styles['style-options']}>
-                            <div className={styles['text-style']}>
-                                <img
-                                    src="/images/text/1.png"
-                                    className={styles['img-icon']}
-                                />
-                                <img
-                                    src="/images/text/2.png"
-                                    className={styles['img-icon']}
-                                />
-                                <img
-                                    src="/images/text/3.png"
-                                    className={styles['img-icon']}
-                                />
-                                <img
-                                    src="/images/text/4.png"
-                                    className={styles['img-icon']}
-                                />
-                                <img
-                                    src="/images/text/5.png"
-                                    className={styles['img-icon']}
-                                />
-                                <img
-                                    src="/images/text/6.png"
-                                    className={styles['img-icon']}
-                                />
-                            </div>
-                            <div className={styles['dividor']}>|</div>
-                            <div className={styles['text-style']}>
-                                <img
-                                    src="/images/text/align-left.png"
-                                    className={styles['img-icon']}
-                                />
-                                <img
-                                    src="/images/text/align-center.png"
-                                    className={styles['img-icon']}
-                                />
-                                <img
-                                    src="/images/text/align-right.png"
-                                    className={styles['img-icon']}
-                                />
-                                <img
-                                    src="/images/text/align-justify.png"
-                                    className={styles['img-icon']}
-                                />
-                            </div>
-                            <div className={styles['dividor']}>|</div>
-                            <div className={styles['text-style']}>
-                                <img
-                                    src="/images/text/link.png"
-                                    className={styles['img-icon']}
-                                />
-                                <img
-                                    src="/images/text/list.png"
-                                    className={styles['img-icon']}
-                                />
-                            </div>
-                        </div>
-                        <textarea
-                            className={styles['content-textarea']}
-                            placeholder="궁금한 내용을 질문으로 작성해 주세요.
-                        다만 개인정보(실명, 전화번호,  계정 정보)가 포함된 정보들은 게시될 수 없습니다."
-                            value={content}
-                            onChange={handleContentChange}
-                        />
-                    </div>
+
+                    <ReactQuill
+                        style={{ width: "100%", height: "600px", marginBottom: "42px" }}
+                        modules={modules}
+                        onChange={setContent}
+                    />
                 </div>
                 <div className={styles['tag-container']}>
                     <div className={styles['text-info']}>
