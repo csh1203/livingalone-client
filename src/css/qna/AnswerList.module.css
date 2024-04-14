@@ -1,0 +1,22 @@
+.container {
+    margin: 0 15vw;
+}
+
+.top-section {
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.sub-button {
+    outline: none;
+    background-color: none;
+    border: 1px solid var(--primary-500);
+    padding: 8px 24px;
+    background-color: white;
+    color: var(--primary-500)
+}
+
+.count {
+    color: var(--gray-500); 
+}
