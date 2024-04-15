@@ -32,10 +32,6 @@ function CreateQnAFrom() {
         setTag(event.target.value.replaceAll(' ', ''));
     };
 
-    const handleContentChange = (event) => {
-        setContent(event.target.value);
-    };
-
     const handleSubmit = async () => {
         try {
             if (userPK) {
@@ -80,7 +76,7 @@ function CreateQnAFrom() {
                     </div>
 
                     <ReactQuill
-                        style={{ width: "100%", height: "600px", marginBottom: "42px" }}
+                        style={{ width: "100%", height: "600px", marginBottom: "42px", borderColor: "#CED0D6", borderRadius: "20px" }}
                         modules={modules}
                         onChange={setContent}
                     />
