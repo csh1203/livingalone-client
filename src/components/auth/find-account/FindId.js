@@ -17,9 +17,10 @@ function FindId({ scope, setScope, setShowId }) {
     const getUserId = async () => {
         try{
             const response = await axios.post(`http://127.0.0.1:3001/users/find-id`, inputValue);
-            console.log(response.data.message);
-            setShowId(response.data.message); 
+            console.log(response.data);
+            setShowId(response.data); 
         }catch(err){
+            if(err.response.status === 404) alert('일치하는 정보가 없습니다.');
             console.error(err);
         }
     }
