@@ -1,28 +1,32 @@
 import React, {useState, useEffect} from "react";
 import '../../css/common/Style.css';
 import styles from '../../css/calc/CalcBox.module.css'
-import CalcInput from "./CalcInput";
 
-function CalcLivingCost({setLivingCost}){
-    const [ eachLivingCost, setEachLivingCost ] = useState({
+import CalcInput from "./CalcInput";
+import SaveCost from './SaveCost'
+
+function CalcLivingCost({ livingCost, setLivingCost, isNum }){
+    const [ eachLivingCost, setEachLivingCost ] = useState({})
+
+    const defaultValue = {
         type: true,
         food: '',
         dailyNecessity: '',
         publicTransport: '',
         ownCar: ''
-    })
+    }
 
-    const selectList = ["직접입력", "500,000(기본)"];
-    const [Selected, setSelected] = useState("");
-
-
-    const handleSelect = (e) => {
-        setSelected(e.target.value);
-    };
-
-    const isNum = num => {
-        if(!num || isNaN(num)) return 0;
-        return parseInt(num);
+    useEffect(() => {
+        getLocalStorage();
+    }, []);
+    
+    const getLocalStorage = () => {
+        const localValue = JSON.parse(localStorage.getItem('livingCost'));
+        if(localValue){
+            setEachLivingCost(localValue);
+        }else{
+            setEachLivingCost(defaultValue)
+        }
     }
 
     useEffect(() => {
@@ -42,13 +46,8 @@ function CalcLivingCost({setLivingCost}){
                 <div className={styles['food-expenses-div']}>
                     <div className={styles['input-title']}>식비</div>
                     <div className={`${styles['monthly-input-div']} ${styles['input-margin']}`}>
-                        <select onChange={handleSelect} value={Selected} className={`${styles['input-form']} ${styles['input-style']}`}>
-                        {selectList.map((item) => (
-                            <option value={item} key={item}>
-                            {item}
-                            </option>
-                        ))}
-                        </select>
+                        <CalcInput placeholder="입력해주세요" value={eachLivingCost.food} 
+                            onChange={e => {setEachLivingCost({...eachLivingCost, food: e.target.value})}}/>
                     </div>
                 </div>
                 <div className={styles['daily-necessity-div']}>
@@ -59,38 +58,27 @@ function CalcLivingCost({setLivingCost}){
             </div>
             <div className={styles['transportation-cost-div']}>
                 <div className={styles['transportation-title']}>교통비</div>
-                    <div className={styles['transportation-choose']}>
-                        <div className={styles['transportation-btn-div']}>
-                            <input type="radio" name="living-type" className={styles['radio-btn']} defaultChecked
-                                onClick={() => setEachLivingCost({...eachLivingCost, type: true})}/>대중교통
-                        </div>
-                        <div className={styles['transportation-btn-div']}>
-                            <input type="radio" name="living-type" className={styles['radio-btn']}
-                                onClick={() => setEachLivingCost({...eachLivingCost, type: false})}/>자차
-                        </div>
+                <div className={styles['transportation-choose']}>
+                    <div className={styles['transportation-btn-div']}>
+                        <input type="radio" name="living-type" className={styles['radio-btn']} checked={eachLivingCost.type}
+                            onClick={() => setEachLivingCost({...eachLivingCost, type: true})}/>대중교통
                     </div>
-                    
-                </div>
-                
-                {eachLivingCost.type ? <PublicTransport eachLivingCost={eachLivingCost} setEachLivingCost={setEachLivingCost}/> : 
-                    <OwnCar eachLivingCost={eachLivingCost} setEachLivingCost={setEachLivingCost}/>}
+                    <div className={styles['transportation-btn-div']}>
+                        <input type="radio" name="living-type" className={styles['radio-btn']} checked={!eachLivingCost.type}
+                            onClick={() => setEachLivingCost({...eachLivingCost, type: false})}/>자차
+                    </div>
+                </div> 
             </div>
-        
+                
+            {eachLivingCost.type ? 
+            <CalcInput placeholder="입력해주세요" value={eachLivingCost.publicTransport} 
+                onChange={e => {setEachLivingCost({...eachLivingCost, publicTransport: e.target.value})}}/> : 
+            <CalcInput placeholder="기름값" value={eachLivingCost.ownCar} 
+                onChange={e => {setEachLivingCost({...eachLivingCost, ownCar: e.target.value})}}/>}
+
+            <SaveCost cost={livingCost} name="livingCost" totalName="totalLiving" saveCost={eachLivingCost} setCost={setEachLivingCost} defaultValue={defaultValue}/>
+        </div>
     );
-}
-
-function PublicTransport({ eachLivingCost, setEachLivingCost }){
-    return(
-        <CalcInput placeholder="입력해주세요" value={eachLivingCost.publicTransport} 
-            onChange={e => {setEachLivingCost({...eachLivingCost, publicTransport: e.target.value})}}/>
-    )
-}
-
-function OwnCar({ eachLivingCost, setEachLivingCost }){
-    return(
-        <CalcInput placeholder="기름값" value={eachLivingCost.ownCar} 
-            onChange={e => {setEachLivingCost({...eachLivingCost, ownCar: e.target.value})}}/>
-    )
 }
 
 export default CalcLivingCost;
