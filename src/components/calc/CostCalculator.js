@@ -14,11 +14,26 @@ function MainCostCalculator() {
     const [ totalCost, setTotalCost ] = useState(0);
     const [ content, setContent ] = useState('categoryHome');
 
+    const isNum = num => {
+        if(!num || isNaN(num)) return 0;
+        return parseInt(num);
+    }
+
     const selectComponent = {
-        categoryHome: <HousingCost setHousingCost={setHousingCost}/>,
-        categoryLiving: <LivingCost setLivingCost={setLivingCost}/>,
-        categoryAnother: <Etc setEtcCost={setEtcCost}/>
+        categoryHome: <HousingCost housingCost={housingCost} setHousingCost={setHousingCost} isNum={isNum} />,
+        categoryLiving: <LivingCost livingCost={livingCost} setLivingCost={setLivingCost} isNum={isNum} />,
+        categoryAnother: <Etc etcCost={etcCost} setEtcCost={setEtcCost} isNum={isNum} />
     };
+
+    useEffect(() => {
+        let totalHousing = localStorage.getItem('totalHousing');
+        let totalLiving = localStorage.getItem('totalLiving');
+        let totalEtc = localStorage.getItem('totalEtc');
+
+        setHousingCost(totalHousing ? parseInt(totalHousing) : 0);
+        setLivingCost(totalLiving ? parseInt(totalLiving) : 0);
+        setEtcCost(totalEtc ? parseInt(totalEtc) : 0);
+    }, [])
 
     useEffect(() => {
         setTotalCost(housingCost + livingCost + etcCost)
@@ -47,23 +62,6 @@ function MainCostCalculator() {
             <div className={styles["main back-test"]}>
                 <div className={styles['input-div']}>
                     {content && <>{selectComponent[content]}</>}
-                    <div className={styles['pin-container']}>
-                        <div className={styles['sum-container']}>
-                            <div className={styles['sum-div']}>
-                                <div className={styles['sum-title']}>합계</div>
-                                <div className={styles['sum-input']}>
-                                    {content === 'categoryHome' ? getUnit(housingCost) : 
-                                        content === 'categoryLiving' ? getUnit(livingCost) : getUnit(etcCost)}
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <hr className={styles['hr']}/>
-                        <div className={styles['btn-group']}>
-                            <div className={styles['delete-btn']}>삭제</div>
-                            <div className={styles['save-btn']}>저장</div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
