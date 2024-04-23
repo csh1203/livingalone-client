@@ -87,7 +87,7 @@ function Login() {
                     </div>
                 </div>
                 <button className={styles['signin-button']} onClick={() => movePage('/join')}>회원가입</button>
-                <Link to="/findAccount" className={styles['forgot-login']}>아이디 | 비밀번호를 잊으셨나요?</Link>
+                <div className={styles['forgot-login']} onClick={() => movePage('/findAccount')}>아이디 | 비밀번호를 잊으셨나요?</div>
             </div>
         </div>
     );
