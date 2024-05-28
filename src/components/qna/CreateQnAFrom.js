@@ -40,7 +40,7 @@ function CreateQnAFrom() {
                     tag: tag,
                     views: 0,
                     content: content,
-                    user_id: userPK,
+                    user_pk: userPK,
                 });
 
                 console.log("글이 성공적으로 전송되었습니다.", response.data);
