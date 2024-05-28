@@ -12,11 +12,18 @@
     outline: none;
     background-color: none;
     border: 1px solid var(--primary-500);
-    padding: 8px 24px;
+    padding: 4px 24px;
     background-color: white;
     color: var(--primary-500)
 }
 
 .count {
     color: var(--gray-500); 
+}
+
+.answer-list {
+    display: flex;
+    flex-direction: column;
+    gap: 52px;
+    margin-bottom: 82px;
 }

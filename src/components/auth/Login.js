@@ -1,16 +1,18 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { setUserPK } from '../../actions/userActions';
 import styles from '../../css/auth/Login.module.css';
 import '../../css/common/Style.css';
+import InputContainer from './basic/InputContainer';
 
 function Login() {
     const movePage = useNavigate();
     const dispatch = useDispatch();
     const [userId, setUserId] = useState('');
     const [userPassword, setUserPassword] = useState('');
+    const [isError, setIsError] = useState(false);
 
     const handleLogin = async () => {
         const req = {
@@ -20,12 +22,12 @@ function Login() {
 
         try {
             const response = await axios.post(`http://127.0.0.1:3001/users/login`, req);
-            const loggedInUserPK = response.data.id;   // 로그인 후 받은 PK
-            dispatch(setUserPK(loggedInUserPK));
-
+            const loggedInUserPK = response.data.user_pk;
+            dispatch(setUserPK(loggedInUserPK))
             movePage('/');
         } catch (error) {
             console.error('로그인 실패:', error)
+            setIsError(true)
         }
     };
 
@@ -34,35 +36,19 @@ function Login() {
             <div className={styles['main-label']}>로그인</div>
             <div className={styles['login-box']}>
                 <div className={styles.forms}>
-                    <div className={styles['input-container']}>
-                        <input
-                            type="text"
-                            className={styles['text-field']}
-                            placeholder="아이디를 입력하세요"
-                            value={userId}
-                            onChange={e => setUserId(e.target.value)}
-                        />
-                        <div className={styles['error-message']}>모든 정보를 입력해 주세요.</div>
-                    </div>
-                    <div className={styles['input-container']}>
-                        <input
-                            type="password"
-                            className={styles['text-field']}
-                            placeholder="비밀번호를 입력하세요"
-                            value={userPassword}
-                            onChange={e => setUserPassword(e.target.value)}
-                        />
-                        <div className={styles['error-message']}>모든 정보를 입력해 주세요.</div>
-                    </div>
-                    <div className={styles['keep-login-checkbox']}>
-                        <label className={styles['round-checkbox']}>
-                            <input
-                                type="checkbox"
-                            />
-                            <span className={styles['checkmark']}></span>
-                            로그인 상태 유지
-                        </label>
-                    </div>
+                    <InputContainer
+                        handleOnChange={setUserId}
+                        placeholder="아이디를 입력해 주세요."
+                        isError={isError}
+                        errorMessage="존재하지 않는 아이디입니다."
+                    />
+                    <InputContainer
+                        handleOnChange={setUserPassword}
+                        isPassword
+                        placeholder="비밀번호를 입력해 주세요."
+                        isError={isError}
+                        errorMessage="알맞지 않는 비밀번호입니다."
+                    />
                     <button
                         className={styles['login-button']}
                         onClick={handleLogin}
@@ -74,16 +60,16 @@ function Login() {
                 </div>
                 <div className={styles['auth-icons']}>
                     <div className={styles['auth-icon']}>
-                        <img src="./images/auth-icon/naver.svg" className={styles['auth-icon-img']}></img>
+                        <img src="./images/auth-icon/naver.svg" className={styles['auth-icon-img']} alt="네이버 로그인" />
                     </div>
                     <div className={styles['auth-icon']}>
-                        <img src="./images/auth-icon/kakao.svg" className={styles['auth-icon-img']}></img>
+                        <img src="./images/auth-icon/kakao.svg" className={styles['auth-icon-img']} alt="카카오 로그인" />
                     </div>
                     <div className={styles['auth-icon']}>
-                        <img src="./images/auth-icon/google.svg" className={styles['auth-icon-img']}></img>
+                        <img src="./images/auth-icon/google.svg" className={styles['auth-icon-img']} alt="구글 로그인" />
                     </div>
                     <div className={styles['auth-icon']}>
-                        <img src="./images/auth-icon/apple.svg" className={styles['auth-icon-img']}></img>
+                        <img src="./images/auth-icon/apple.svg" className={styles['auth-icon-img']} alt="애플 로그인" />
                     </div>
                 </div>
                 <button className={styles['signin-button']} onClick={() => movePage('/join')}>회원가입</button>
