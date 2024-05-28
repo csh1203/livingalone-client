@@ -22,9 +22,8 @@ function Login() {
 
         try {
             const response = await axios.post(`http://127.0.0.1:3001/users/login`, req);
-            const loggedInUserPK = response.data.id;
+            const loggedInUserPK = response.data.user_pk;
             dispatch(setUserPK(loggedInUserPK))
-            console.log('response', response)
             movePage('/');
         } catch (error) {
             console.error('로그인 실패:', error)
