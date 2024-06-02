@@ -8,13 +8,42 @@
     justify-content: space-between;
 }
 
+.buttons {
+    display: flex;
+    gap: 8px;
+}
+
 .sub-button {
+    width: fit-content;
     outline: none;
     background-color: none;
     border: 1px solid var(--primary-500);
     padding: 4px 24px;
     background-color: white;
-    color: var(--primary-500)
+    color: var(--primary-500);
+    cursor: pointer;
+}
+
+.main-button {
+    width: fit-content;
+    outline: none;
+    background-color: none;
+    border: 1px solid var(--primary-500);
+    padding: 4px 24px;
+    background-color: var(--primary-500);
+    color: white;
+    cursor: pointer;
+}
+
+.sec-button {
+    width: fit-content;
+    outline: none;
+    background-color: none;
+    border: 1px solid var(--gray-200);
+    padding: 4px 24px;
+    background-color: white;
+    color: var(--gray-600);
+    cursor: pointer;
 }
 
 .count {
