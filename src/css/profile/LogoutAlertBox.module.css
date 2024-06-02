@@ -1,0 +1,67 @@
+.alert-shadow{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.12);
+    z-index: 1500;
+}
+
+.alert-box{
+    position: absolute;
+    background-color: white;
+    width: 590px;
+    height: 270px;
+    padding: 52px 72px;
+    border-radius: 20px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1500;
+}
+
+
+.alert-title{
+    font-size: 24px;
+    font-weight: 500;
+    color: black;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.alert-comment{
+    font-size: 14px;
+    color: var(--gray-300);
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.alert-btns{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    column-gap: 16px;
+}
+
+.alert-btn-no{
+    width: 215px;
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    color: var(--gray-300);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.alert-btn-yes{
+    width: 215px;
+    height: 100%;
+    border: none;
+    background-color: var(--primary-500);
+    border-radius: 8px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

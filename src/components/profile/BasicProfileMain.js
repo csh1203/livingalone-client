@@ -4,8 +4,10 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from 'react-router-dom';
 import '../../css/common/Style.css';
+
 import styles from '../../css/profile/BasicProfile.module.css';
 import CancelAccount from "./CancelAccount";
+import LogoutAlertBox from './LogoutAlertBox'
 import MyComment from "./MyComment";
 import MyQnA from "./MyQnA";
 
@@ -17,8 +19,8 @@ function BasicProfileMain() {
     const [ showCancelPopup, setShowCancelPopup ] = useState(false);
 
     const [userInfo, setUserInfo] = useState(null);
-    const [usersComments, setUsersComments] = useState([]);
-    const [userQnA, setUserQnA] = useState([]);
+    const [usersComments, setUsersComments] = useState(0);
+    const [userQnA, setUserQnA] = useState(0);
 
     // Redux 스토어에서 유저의 PK 값을 가져옴
     const userPK = useSelector(state => state.user.userPK);
@@ -37,7 +39,7 @@ function BasicProfileMain() {
 
     const fetchUserInfo = async () => {
         try {
-            const response = await axios.get(`http://127.0.0.1:3001/users/1`);
+            const response = await axios.get(`http://127.0.0.1:3001/users/${userPK}`);
             setUserInfo(response.data);
         } catch (error) {
             console.error('사용자 정보 요청 실패:', error);
@@ -46,8 +48,8 @@ function BasicProfileMain() {
 
     const fetchCommentInfo = async () => {
         try {
-            const response = await axios.get(`http://127.0.0.1:3001/answers/list/1`);
-            setUsersComments(response.data.data)
+            const response = await axios.get(`http://127.0.0.1:3001/answers/list/${userPK}`);
+            setUsersComments(response.data.data.length);
         } catch (error) {
             console.error('댓글 요청 실패:', error);
         }
@@ -55,9 +57,8 @@ function BasicProfileMain() {
 
     const fetchQnAInfo = async () => {
         try {
-            const response = await axios.get(`http://127.0.0.1:3001/questions/1`);
-            console.log(response.data.question);
-            setUserQnA(response.data.data)
+            const response = await axios.get(`http://127.0.0.1:3001/questions/list/${userPK}`);
+            setUserQnA(response.data.length)
         } catch (error) {
             console.error('댓글 요청 실패:', error);
         }
@@ -81,14 +82,14 @@ function BasicProfileMain() {
                         <img src={activeButtonIndex === 0 ? '/images/mypage-icon/my_qna_select.svg' : '/images/mypage-icon/my_qna.svg'} />
                         <div className={styles['active-label']} style={{ color: activeButtonIndex === 0 ? '#036CE7' : '#1C1C1E'}}>내가 작성한 Q&A</div>
                     </div>
-                    <div className={styles['count']}>1개</div>
+                    <div className={styles['count']}>{userQnA}개</div>
                 </div>
                 <div className={styles['users-active']} onClick={() => setActiveButtonIndex(1)}>
                     <div className={styles['active-label-box']}>
                         <img src={activeButtonIndex === 1 ? '/images/mypage-icon/my_comment_select.svg' : '/images/mypage-icon/my_comment.svg'} />
                         <div className={styles['active-label']} style={{ color: activeButtonIndex === 1 ? '#036CE7' : '#1C1C1E'}}>내가 쓴 댓글</div>
                     </div>
-                    <div className={styles['count']}>{usersComments.length}개</div>
+                    <div className={styles['count']}>{usersComments}개</div>
                 </div>
                 <hr className={styles['divider']}/>
                 <div className={styles['mention']}>자취 모르는게 있다면?</div>
@@ -106,26 +107,6 @@ function BasicProfileMain() {
 
             { showLogoutAlert && <LogoutAlertBox setShowLogoutAlert={setShowLogoutAlert}/> }
             { showCancelPopup && <CancelAccount setShowCancelPopup={setShowCancelPopup}/> }
-        </div>
-    )
-}
-
-function LogoutAlertBox ({ setShowLogoutAlert }) {
-    return (
-        <div className={styles['alert-shadow']}>
-            <div className={styles['alert-box']}>
-                <div className={styles['alert-title']}>로그아웃 하시겠습니까?</div>
-                <div className={styles['alert-comment']}>
-                    홀로서기 서비스를 이용하실려면 로그인이 필요합니다. <br/>
-                    정말 로그아웃 하시겠습니까?
-                </div>
-                <div className={styles['alert-btns']}>
-                    <div className={styles['alert-btn-no']} onClick={() => setShowLogoutAlert(false)}>아니오</div>
-                    <Link to={"/login"}>
-                        <div className={styles['alert-btn-yes']}>네</div>
-                    </Link>
-                </div>
-            </div>
         </div>
     )
 }

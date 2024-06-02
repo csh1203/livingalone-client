@@ -63,6 +63,7 @@ li {
 .user-icon {
     margin: 0 0 0 -20px;
     font-size: 1.3rem;
+    color: var(--gray-900);
 }
 
 
