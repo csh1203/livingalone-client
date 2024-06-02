@@ -1,6 +1,6 @@
 import axios from 'axios';
 import DOMPurify from 'dompurify';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import '../../css/common/Style.css';
 import styles from '../../css/qna/QnAPost.module.css';
@@ -12,7 +12,8 @@ function QnAPost() {
     const [loading, setLoading] = useState(true); // 추가: 로딩 상태 추가
 
     useEffect(() => {
-        fetchData(); // async 함수를 사용하므로 async 키워드를 useEffect 내부에서 직접 사용하지 않음
+        fetchData();
+        addViewCount();
     }, [id]);
 
     const fetchData = async () => {
@@ -24,6 +25,15 @@ function QnAPost() {
             console.error(error);
         }
     };
+
+    const addViewCount = useCallback(async () => {
+        try {
+            const response = await axios.post(`http://localhost:3001/questions/view/${id}`);
+            console.log(response)
+        } catch (error) {
+            console.error(error)
+        }
+    }, [])
 
     // 추가: 로딩 중일 때 로딩 상태를 표시
     if (loading) {
