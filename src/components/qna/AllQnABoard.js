@@ -38,7 +38,7 @@ function AllQnABoard() {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get(`http://localhost:3001/questions/list/paginated?page=${page}`);
+            const response = await axios.get(`http://localhost:3001/questions/list?page=${page}`);
             setData(response.data.questions);
         } catch (error) {
             console.error(error);
@@ -65,7 +65,7 @@ function AllQnABoard() {
                         ))
                     }
                 </div>
-                <button onClick={() => setPage(page => page + 1)}>page up</button>
+                {/* <button onClick={() => setPage(page => page + 1)}>page up</button> */}
             </div>
         </div>
     )
