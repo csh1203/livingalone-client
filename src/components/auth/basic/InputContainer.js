@@ -30,7 +30,7 @@ function InputContainer({ handleOnChange, isPassword, placeholder, isError, erro
                 }
             </div>
             {
-                errorMessage &&
+                isError &&
                 <div className={styles['error-message']}>{errorMessage}</div>
             }
         </div>
