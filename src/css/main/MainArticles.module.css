@@ -36,6 +36,7 @@
 .goto-label {
     text-align: right;
     font-size: 0.9rem;
+    color: var(--primary-300)
 }
 
 .section-label {

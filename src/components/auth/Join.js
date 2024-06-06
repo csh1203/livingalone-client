@@ -27,11 +27,31 @@ function Join() {
         return passwordRegex.test(password);
     };
 
+    const validateId = (id) => {
+        const idRegex = /^[A-Za-z\d]{6,12}$/;
+        return idRegex.test(id);
+    };
+
+    const validateEmail = (email) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
+
     const handleSubmit = useCallback(async () => {
         setIdError(false);
         setPwError(false);
         setPwConfirmError(false);
         setEmailError(false);
+
+        if (!id || !name || !password || !confirmPassword || !email) {
+            alert("모든 필드를 입력해 주세요.");
+            return;
+        }
+
+        if (!validateId(id)) {
+            setIdError(true);
+            return;
+        }
 
         if (!validatePassword(password)) {
             setPwError(true);
@@ -40,6 +60,11 @@ function Join() {
 
         if (password !== confirmPassword) {
             setPwConfirmError(true);
+            return;
+        }
+
+        if (!validateEmail(email)) {
+            setEmailError(true);
             return;
         }
 
@@ -52,8 +77,7 @@ function Join() {
                 image: imgUrl
             };
 
-            const response = await axios.post(`http://127.0.0.1:3001/users/signup`, req);
-
+            const response = await axios.post(`${process.env.REACT_APP_SERVER}/users/signup`, req);
             movePage('/login');
         } catch (error) {
             setIdError(true);
@@ -95,7 +119,7 @@ function Join() {
                     <InputContainer
                         handleOnChange={setEmail}
                         placeholder="이메일을 입력해 주세요."
-                        errorMessage="이미 존재하는 이메일입니다."
+                        errorMessage="이미 존재하는 이메일이거나 이메일 형식에 맞지 않습니다."
                         isError={emailError}
                     />
                     <button

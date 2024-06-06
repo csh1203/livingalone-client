@@ -38,7 +38,7 @@ function AllQnABoard() {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get(`http://localhost:3001/questions/list?page=${page}`);
+            const response = await axios.get(`${process.env.REACT_APP_SERVER}/questions/list?page=${page}`);
             setData(response.data.questions);
         } catch (error) {
             console.error(error);

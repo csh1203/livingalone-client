@@ -1,16 +1,19 @@
-import React from "react";
-import Nav from "../components/common/Nav";
-import Footer from "../components/common/Footer";
-import ArticleSearch from "../components/article/ArticleSearch";
+import React, { useState } from "react";
 import ArticleList from "../components/article/ArticleList";
+import ArticleSearch from "../components/article/ArticleSearch";
+import Footer from "../components/common/Footer";
+import Nav from "../components/common/Nav";
 
 function ArticlePage() {
+
+    const [keyword, setKeyword] = useState("")
+
     return (
         <div>
-            <Nav/>
-            <ArticleSearch/>
-            <ArticleList/>
-            <Footer/>
+            <Nav />
+            <ArticleSearch handleOnChange={setKeyword} />
+            <ArticleList keyword={keyword.trim()} />
+            <Footer />
         </div>
     );
 }

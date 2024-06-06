@@ -2,9 +2,10 @@ import { Icon } from '@iconify/react';
 import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import styles from "../../css/article/ArticleList.module.css";
+import articleList from '../../data/article';
 import Article from './Article';
 
-function ArticleList() {
+function ArticleList({ keyword }) {
 
     const [searchParams, setSearchParams] = useSearchParams();
 
@@ -72,19 +73,40 @@ function ArticleList() {
                 {/*줄 맞춤을 위한 div*/}
                 <div className={`${styles['category-item']} ${styles['no-category']}`}></div>
             </div>
-            {/*검색 필터*/}
+            {/* 검색 필터 */}
             <div className={styles['filter-container']}>
-                <div className={styles['filter-item']}>
+                {/* <div className={styles['filter-item']}>
                     <div className={styles['filter-text']}>검색 필터</div>
-                    <Icon icon="bi:filter" className={styles['filter-icon']} />
-                </div>
+                    <Icon icon="bi:filter" className={styles['filter-icon']} /> 
+                </div> */}
             </div>
             {/*글 목록*/}
             <div className={styles['article-list']}>
-                <Article />
-                <Article />
-                <Article />
-                <Article />
+                {
+                    articleList
+                        .filter(article => {
+                            if (selectedCategory == 1) return article.tag == '주거'
+                            else if (selectedCategory == 2) return article.tag == '비용'
+                            else if (selectedCategory == 3) return article.tag == '인테리어'
+                            else return article.tag == '기타'
+                        })
+                        .filter(article => {
+                            if (keyword === "") return true;
+                            else {
+                                const regex = new RegExp(keyword, 'i');
+                                return regex.test(article.title);
+                            }
+                        })
+                        .map((article, index) =>
+                            <Article
+                                key={index}
+                                index={index}
+                                content={article.content}
+                                title={article.title}
+                                thumbnail={article.thumbnail} l
+                                likes={article.likes}
+                                date={article.date} />)
+                }
             </div>
             <div className={styles['pagination-container']}>
                 <div className={styles['icons']}>
