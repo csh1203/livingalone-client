@@ -21,7 +21,7 @@ function Login() {
         }
 
         try {
-            const response = await axios.post(`http://127.0.0.1:3001/users/login`, req);
+            const response = await axios.post(`${process.env.REACT_APP_SERVER}/users/login`, req);
             const loggedInUserPK = response.data.user_pk;
             dispatch(setUserPK(loggedInUserPK))
             localStorage.setItem('userPK', loggedInUserPK);
