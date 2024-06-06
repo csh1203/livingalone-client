@@ -1,14 +1,13 @@
 import axios from "axios";
 import React, { useState } from "react";
 import ReactQuill from "react-quill";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import '../../css/common/Style.css';
 import styles from '../../css/qna/CreateQnAForm.module.css';
 import QnATags from "./QnATags";
 
 function CreateQnAFrom() {
-    const userPK = useSelector(state => state.user.userPK);
+    const userPK = localStorage.getItem("userPK")
     const movePage = useNavigate();
 
     const modules = {

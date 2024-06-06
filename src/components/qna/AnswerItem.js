@@ -1,5 +1,6 @@
 import '../../css/common/Style.css';
 import styles from '../../css/qna/AnswerItem.module.css';
+
 function AnswerItem({ name, content, date }) {
     return (
         <div className={styles['container']}>
@@ -7,7 +8,7 @@ function AnswerItem({ name, content, date }) {
                 {name}
             </p>
             <p className={styles['content']}>
-                {content}
+                {content.replace(/<\/?[^>]+(>|$)/g, "")}
             </p>
             <small className={styles['date']}>{date}</small>
         </div>
