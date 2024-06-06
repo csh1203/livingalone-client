@@ -1,9 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from "../../css/article/ArticleList.module.css";
 
 function Article({ index, content, title, thumbnail, likes, date }) {
+
+    const movePage = useNavigate()
+
     return (
-        <div className={styles['article-container']}>
+        <div className={styles['article-container']} onClick={() => movePage(`/articles/${index}`)}>
             <div className={styles['text-content']}>
                 <div className={styles['main-contents']}>
                     <div className={styles['article-title']}>{title}</div>
