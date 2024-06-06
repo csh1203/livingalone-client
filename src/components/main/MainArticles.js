@@ -1,6 +1,6 @@
 import { Icon } from '@iconify/react';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../../css/common/Style.css';
 import styles from '../../css/main/MainArticles.module.css';
 import articleList from '../../data/article';
@@ -32,18 +32,18 @@ function ArticleSection({ title, sort }) {
             <div className={styles["articles"]}>
                 {sort === "hot"
                     ? hotArticle.slice(0, 4).map(article => (
-                        <Article key={article.id} title={article.title} thumbnail={article.thumbnail} date={article.date} />
+                        <Article key={article.id} index={article.id} title={article.title} thumbnail={article.thumbnail} date={article.date} />
                     ))
                     : sort === '주거'
                         ? hotArticle
                             .filter(article => article.tag === '주거')
                             .map(article => (
-                                <Article key={article.id} title={article.title} thumbnail={article.thumbnail} date={article.date} />
+                                <Article key={article.id} index={article.id} title={article.title} thumbnail={article.thumbnail} date={article.date} />
                             ))
                         : hotArticle
                             .filter(article => article.tag === '인테리어')
                             .map(article => (
-                                <Article key={article.id} title={article.title} thumbnail={article.thumbnail} date={article.date} />
+                                <Article key={article.id} index={article.id} title={article.title} thumbnail={article.thumbnail} date={article.date} />
                             ))
                 }
             </div>
@@ -51,9 +51,11 @@ function ArticleSection({ title, sort }) {
     );
 }
 
-function Article({ thumbnail, title, date }) {
+function Article({ index, thumbnail, title, date }) {
+    const movePage = useNavigate();
+
     return (
-        <div className={styles["article"]}>
+        <div className={styles["article"]} onClick={() => movePage(`/articles/${index}`)}>
             <img src={thumbnail} className={styles["article-thumbnail"]} />
             <div className={styles["article-title"]}>{title.substr(0, 15) + '...'}</div>
             <div className={styles["article-date"]}>{date}</div>

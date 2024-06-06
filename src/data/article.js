@@ -1,5 +1,6 @@
 const articleList = [
     {
+        id: 1,
         tag: "인테리어",
         title: "공간 활용도 100%, 자취방 인테리어",
         thumbnail: "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/advice/170312497754844848.jpeg?gif=1&w=1440",
@@ -63,6 +64,7 @@ const articleList = [
         date: '2024.04.23.'
     },
     {
+        id: 2,
         tag: "인테리어",
         title: "저렴이 템으로 원룸 꾸미기!",
         thumbnail: "https://i.pinimg.com/564x/18/70/71/187071a348f77638d83d85d1218ab44a.jpg",
@@ -123,6 +125,7 @@ const articleList = [
         <p>이러한 팁들을 활용하여 적은 비용으로도 멋진 인테리어를 완성할 수 있습니다. 창의력과 작은 노력이 더해진다면, 더욱 특별한 나만의 공간을 만들 수 있을 것입니다.</p>`
     },
     {
+        id: 3,
         tag: "인테리어",
         title: "마음이 편안해지는 인테리어, 우드 활용 100% 꿀팁",
         thumbnail: "https://i.pinimg.com/736x/1e/af/81/1eaf81b2e2171020dfcd982f37ac7c33.jpg",
@@ -148,6 +151,8 @@ const articleList = [
         `
     },
     {
+
+        id: 12,
         tag: "인테리어",
         title: '깔끔 그 자체, 화이트 인테리어 모음집',
         thumbnail: "https://i.pinimg.com/736x/41/57/30/415730c2ee3dce95424dcdc55541c43c.jpg",
@@ -176,6 +181,7 @@ const articleList = [
         `
     },
     {
+        id: 4,
         tag: '주거',
         title: '자취 원룸 구하기 전 필독서',
         thumbnail: "https://i.pinimg.com/564x/8f/c1/36/8fc136961f20942d3bf4a2051e144ce0.jpg",
@@ -207,6 +213,7 @@ const articleList = [
         `
     },
     {
+        id: 5,
         tag: '주거',
         title: '집 구할 때 무조건 챙겨야 하는 서류는?',
         thumbnail: 'https://i.pinimg.com/564x/04/e8/00/04e8008b46deadb8a032ddf256c7b87f.jpg',
@@ -238,6 +245,7 @@ const articleList = [
         `
     },
     {
+        id: 6,
         tag: '주거',
         title: '어떤 집이 좋은 집일까? 나만의 집 보는 기준 세우기',
         thumbnail: 'https://i.pinimg.com/564x/ce/9b/26/ce9b2614925ed551557013738ffee4b4.jpg',
@@ -262,6 +270,7 @@ const articleList = [
         `
     },
     {
+        id: 7,
         tag: '주거',
         title: '부동산 계약할 때 한번 쯤 검색하게 되는 용어 모음',
         thumbnail: 'https://i.pinimg.com/564x/eb/63/95/eb6395f15546d80f64d3e832e6b35793.jpg',
@@ -299,6 +308,7 @@ const articleList = [
         `
     },
     {
+        id: 8,
         tag: '비용',
         title: '알뜰살뜰 자취 비용 아끼는 꿀팁 5가지',
         thumbnail: 'https://i.pinimg.com/564x/4d/cc/d0/4dccd0a6e9cf08c6768bca3eb54c088e.jpg',
@@ -321,6 +331,7 @@ const articleList = [
         `
     },
     {
+        id: 9,
         tag: '비용',
         title: '너무 아까운 전기세 ㅠㅠ 줄이는 방법은?',
         thumbnail: 'https://i.pinimg.com/736x/b2/a8/74/b2a87436f23354c7ca5f30a0a19ca458.jpg',
@@ -345,6 +356,7 @@ const articleList = [
         `
     },
     {
+        id: 10,
         tag: '기타',
         title: '자취생들의 동반자, 볶음밥 레시피 5',
         likes: 15,
@@ -412,6 +424,7 @@ const articleList = [
         `
     },
     {
+        id: 11,
         tag: '기타',
         title: '자취생들을 위한 분리수거 꿀팁',
         likes: 20,
