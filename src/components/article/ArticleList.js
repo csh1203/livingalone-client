@@ -100,7 +100,7 @@ function ArticleList({ keyword }) {
                         .map((article, index) =>
                             <Article
                                 key={index}
-                                index={index}
+                                index={article.id}
                                 content={article.content}
                                 title={article.title}
                                 thumbnail={article.thumbnail} l
