@@ -84,7 +84,15 @@ function AnswerList() {
             }
             <div className={styles['answer-list']}>
                 {
-                    answerList.map(answer => <AnswerItem key={answer.id} answerUserPk={answer.user_pk} name={answer.user.name} content={answer.answer} date={answer.createdAt.split('T')[0]} />)
+                    answerList.map(answer => <AnswerItem
+                        key={answer.id}
+                        index={answer.answer_pk}
+                        answerUserPk={answer.user_pk}
+                        name={answer.user.name}
+                        content={answer.answer}
+                        date={answer.createdAt.split('T')[0]}
+                        setIsUpdate={setIsUpdated}
+                    />)
                 }
             </div>
         </div>
