@@ -24,8 +24,67 @@
     font-size: 1rem;
 }
 
+.profile-name {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+.profile {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
 .date {
     color: var(--gray-300);
     font-weight: 400;
     font-size: 0.9rem;
+}
+
+.profile-dots {
+    display: flex;
+    justify-content: space-between;
+}
+
+.line {
+    cursor: pointer;
+    width: 24px;
+}
+
+.container {
+    position: relative;
+}
+
+.profile-dots {
+    position: relative;
+}
+
+.tooltip {
+    position: absolute;
+    top: 70%; 
+    left: 75%; 
+    transform: translateY(-50%);
+    background: white;
+    border: 1px solid var(--gray-200);
+    padding: 10px;
+    z-index: 10;
+    border-radius: 12px;
+    padding: 12px 60px;
+    cursor: pointer
+}
+
+.tooltip-menu {
+    color: var(--gray-300);
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+.tooltip-error {
+    color: red;
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+.accept {
+    color: var(--primary-500);
+    cursor: pointer;
 }
