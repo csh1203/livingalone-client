@@ -18,7 +18,7 @@ function QnAPost() {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get(`http://localhost:3001/questions/${id}`);
+            const response = await axios.get(`${process.env.REACT_APP_SERVER}/questions/${id}`);
             setPost(response.data.question);
             setLoading(false); // 추가: 데이터 로딩이 끝났으므로 로딩 상태 변경
         } catch (error) {
@@ -28,7 +28,7 @@ function QnAPost() {
 
     const addViewCount = useCallback(async () => {
         try {
-            const response = await axios.post(`http://localhost:3001/questions/view/${id}`);
+            const response = await axios.post(`${process.env.REACT_APP_SERVER}/questions/view/${id}`);
             console.log(response)
         } catch (error) {
             console.error(error)

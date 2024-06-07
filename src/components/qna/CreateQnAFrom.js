@@ -34,7 +34,7 @@ function CreateQnAFrom() {
     const handleSubmit = async () => {
         try {
             if (userPK) {
-                const response = await axios.post(`http://localhost:3001/questions`, {
+                const response = await axios.post(`${process.env.REACT_APP_SERVER}/questions`, {
                     title: title,
                     tag: tag,
                     views: 0,
