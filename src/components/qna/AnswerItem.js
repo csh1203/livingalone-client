@@ -1,16 +1,28 @@
-import { useState } from 'react';
+import axios from 'axios';
+import { useCallback, useState } from 'react';
 import '../../css/common/Style.css';
 import styles from '../../css/qna/AnswerItem.module.css';
 
-function AnswerItem({ answerUserPk, name, content, date }) {
+function AnswerItem({ index, answerUserPk, name, content, date, setIsUpdate }) {
 
     const [isVisible, setIsVisible] = useState(false)
+    const [loading, setLoading] = useState(false)
+
     const currentUser = localStorage.getItem('userPK');
-    console.log('currentUser', currentUser)
 
     const handleLineClick = () => {
         setIsVisible(!isVisible);
     };
+
+    const deleteAnswer = useCallback(async () => {
+        try {
+            setIsUpdate(true)
+            await axios.delete(`${process.env.REACT_APP_SERVER}/answers/${index}`)
+            setIsUpdate(false)
+        } catch (error) {
+            console.error(error)
+        }
+    }, [])
 
     console.log(process.env.REACT_APP_BASIC_PROFILE)
     return (
@@ -24,7 +36,7 @@ function AnswerItem({ answerUserPk, name, content, date }) {
                 </div>
                 <img src="/images/line.png" className={styles['line']} onClick={() => setIsVisible(isVisible => !isVisible)} />
                 {isVisible && (
-                    <div className={styles['tooltip']}>
+                    <div className={styles['tooltip']} onClick={deleteAnswer}>
                         {
                             answerUserPk == currentUser
                                 ?
