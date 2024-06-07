@@ -7,11 +7,12 @@ import styles from '../../css/qna/AllQnABoard.module.css';
 // 컴포넌트
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import Pagenation from "../common/Pagination";
 import QnAItem from "./QnAItem";
 
 function AllQnABoard() {
     const [data, setData] = useState([]);
-    const [header, setHeader] = useState('전체 게시글')
+    const [pagination, setPagination] = useState(null);
     const [tag, setTag] = useState('전체 게시글');
     const [page, setPage] = useState(1);
 
@@ -38,8 +39,10 @@ function AllQnABoard() {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_SERVER}/questions/list?page=${page}`);
+            const response = await axios.get(`${process.env.REACT_APP_SERVER}/questions/list/page?page=${page}`);
             setData(response.data.questions);
+            console.log(response)
+            setPagination(response.data.pagination)
         } catch (error) {
             console.error(error);
         }
@@ -54,18 +57,25 @@ function AllQnABoard() {
             <div className={styles['board-section']}>
                 <div className={styles['items-container']}>
                     {
-                        data.map(item => (
-                            <QnAItem
-                                key={item.question_pk}
-                                id={item.question_pk}
-                                title={item.title}
-                                content={item.content}
-                                createdAt={item.createdAt.split('T')[0].split('-').join('.')}
-                            />
-                        ))
+                        data
+                            .filter(item => tag === '전체 게시글' || tag === item.tag)
+                            .map(item => (
+                                <QnAItem
+                                    key={item.question_pk}
+                                    id={item.question_pk}
+                                    title={item.title}
+                                    content={item.content}
+                                    createdAt={item.createdAt.split('T')[0].split('-').join('.')}
+                                />
+                            ))
                     }
                 </div>
-                {/* <button onClick={() => setPage(page => page + 1)}>page up</button> */}
+                {
+                    pagination
+                        ?
+                        <Pagenation handleOnClick={setPage} currentPage={pagination.currentPage} totalPage={pagination.totalPages} />
+                        : 'loading'
+                }
             </div>
         </div>
     )

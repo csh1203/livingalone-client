@@ -1,5 +1,6 @@
 .container {
     margin: 0 15vw;
+    min-height: 80vh;
 }
 
 .top-section {

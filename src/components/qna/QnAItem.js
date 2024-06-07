@@ -13,7 +13,7 @@ function QnAItem({ id, title, content, createdAt }) {
             <div className={styles['q-content']}>
                 {title}
             </div>
-            <div className={styles['a-content']}>{content.replace(/<\/?[^>]+(>|$)/g, "")}</div>
+            <div className={styles['a-content']}>{content.replace(/<\/?[^>]+(>|$)/g, "").substr(0, 50)}</div>
             <div className={styles['date']}>{createdAt}</div>
         </div >
     )

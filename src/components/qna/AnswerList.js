@@ -6,7 +6,7 @@ import '../../css/common/Style.css';
 import styles from '../../css/qna/AnswerList.module.css';
 import AnswerItem from './AnswerItem';
 
-function AnswerList(props) {
+function AnswerList() {
     const userPK = localStorage.getItem("userPK")
     const { id } = useParams()
     const [answerList, setAnswerList] = useState([])
@@ -23,7 +23,7 @@ function AnswerList(props) {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get(`http://localhost:3001/answers/question/${id}`)
+            const response = await axios.get(`${process.env.REACT_APP_SERVER}/answers/question/${id}`)
             console.log(response.data.data)
             setAnswerList(response.data.data)
         } catch (error) {
@@ -40,7 +40,7 @@ function AnswerList(props) {
                 answer: content
             }
 
-            const response = await axios.post(`http://localhost:3001/answers`, req)
+            const response = await axios.post(`${process.env.REACT_APP_SERVER}/answers`, req)
             console.log(response.data.message)
             setIsUpdated(isUpdated => !isUpdated)
             setIsPosting(false)
@@ -84,7 +84,7 @@ function AnswerList(props) {
             }
             <div className={styles['answer-list']}>
                 {
-                    answerList.map(answer => <AnswerItem key={answer.id} name={answer.user_pk} content={answer.answer} date={answer.createdAt.split('T')[0]} />)
+                    answerList.map(answer => <AnswerItem key={answer.id} answerUserPk={answer.user_pk} name={answer.user.name} content={answer.answer} date={answer.createdAt.split('T')[0]} />)
                 }
             </div>
         </div>

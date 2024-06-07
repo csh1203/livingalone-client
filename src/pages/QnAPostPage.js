@@ -6,9 +6,10 @@ import QnAPost from "../components/qna/QnAPost";
 function QnAPostPage(props) {
     return (
         <>
-            <Nav />
             <QnAPost />
             <AnswerList />
+
+            <Nav />
             <Footer />
         </>
     )
