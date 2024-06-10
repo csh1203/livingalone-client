@@ -39,7 +39,7 @@ function BasicProfileMain() {
 
     const fetchUserInfo = async () => {
         try {
-            const response = await axios.get(`http://127.0.0.1:3001/users/${userPK}`);
+            const response = await axios.get(`${process.env.REACT_APP_SERVER}/users/${userPK}`);
             setUserInfo(response.data);
         } catch (error) {
             console.error('사용자 정보 요청 실패:', error);
@@ -48,8 +48,8 @@ function BasicProfileMain() {
 
     const fetchCommentInfo = async () => {
         try {
-            const response = await axios.get(`http://127.0.0.1:3001/answers/list/${userPK}`);
-            setUsersComments(response.data.data.length);
+            const response = await axios.get(`${process.env.REACT_APP_SERVER}/answers/list/${userPK}`);
+            setUsersComments(response.data.data);
         } catch (error) {
             console.error('댓글 요청 실패:', error);
         }
@@ -57,8 +57,8 @@ function BasicProfileMain() {
 
     const fetchQnAInfo = async () => {
         try {
-            const response = await axios.get(`http://127.0.0.1:3001/questions/list/${userPK}`);
-            setUserQnA(response.data.length)
+            const response = await axios.get(`${process.env.REACT_APP_SERVER}/questions/list/${userPK}`);
+            setUserQnA(response.data)
         } catch (error) {
             console.error('댓글 요청 실패:', error);
         }
@@ -82,14 +82,14 @@ function BasicProfileMain() {
                         <img src={activeButtonIndex === 0 ? '/images/mypage-icon/my_qna_select.svg' : '/images/mypage-icon/my_qna.svg'} />
                         <div className={styles['active-label']} style={{ color: activeButtonIndex === 0 ? '#036CE7' : '#1C1C1E'}}>내가 작성한 Q&A</div>
                     </div>
-                    <div className={styles['count']}>{userQnA}개</div>
+                    <div className={styles['count']}>{userQnA.length}개</div>
                 </div>
                 <div className={styles['users-active']} onClick={() => setActiveButtonIndex(1)}>
                     <div className={styles['active-label-box']}>
                         <img src={activeButtonIndex === 1 ? '/images/mypage-icon/my_comment_select.svg' : '/images/mypage-icon/my_comment.svg'} />
                         <div className={styles['active-label']} style={{ color: activeButtonIndex === 1 ? '#036CE7' : '#1C1C1E'}}>내가 쓴 댓글</div>
                     </div>
-                    <div className={styles['count']}>{usersComments}개</div>
+                    <div className={styles['count']}>{usersComments.length}개</div>
                 </div>
                 <hr className={styles['divider']}/>
                 <div className={styles['mention']}>자취 모르는게 있다면?</div>
@@ -102,7 +102,8 @@ function BasicProfileMain() {
             </div>
 
             <div>
-                {activeButtonIndex === null ? <></> : activeButtonIndex ? <MyComment /> : <MyQnA />}
+                {activeButtonIndex === null ? <></> : 
+                 activeButtonIndex ? <MyComment usersComments={usersComments}/> : <MyQnA userQnA={userQnA} />}
             </div>
 
             { showLogoutAlert && <LogoutAlertBox setShowLogoutAlert={setShowLogoutAlert}/> }
