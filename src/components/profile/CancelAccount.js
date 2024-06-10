@@ -12,7 +12,7 @@ function CancelAccount({ setShowCancelPopup }) {
 
     const cacelAccount = async() => {
         try{
-            const response = await axios.delete(`http://127.0.0.1:3001/users/${userPK}`);
+            const response = await axios.delete(`${process.env.REACT_APP_SERVER}/users/${userPK}`);
             movePage('/login');
         }catch(error){
             console.log(error);

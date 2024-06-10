@@ -16,7 +16,7 @@ function FindId({ scope, setScope, setShowId }) {
 
     const getUserId = async () => {
         try{
-            const response = await axios.post(`http://127.0.0.1:3001/users/find-id`, inputValue);
+            const response = await axios.post(`${process.env.REACT_APP_SERVER}/users/find-id`, inputValue);
             console.log(response.data);
             setShowId(response.data); 
         }catch(err){

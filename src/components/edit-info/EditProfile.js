@@ -1,26 +1,79 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { Link, useNavigate } from 'react-router-dom';
+import axios from "axios";
+import { useSelector } from "react-redux";
 import '../../css/common/Style.css';
 import styles from '../../css/edit-info/EditProfile.module.css'
 
 function EditProfile() {
     const [ profileImg, setProfileImg ] = useState("/images/edit-info/default-profile-img.png");
+    const [ imageSrc, setImageSrc ] = useState("/images/edit-info/default-profile-img.png");
+    const [ nickname, setNickname ] = useState('');
+    const [ defaultNickname, setDefaultNickname ] = useState('');
+    const [ defaultProfile, setDefaultProfile ] = useState("/images/edit-info/default-profile-img.png");
+
     const fileInput = useRef(null);
 
+    const movePage = useNavigate();
+    const userPK = useSelector(state => state.user.userPK);
+
+    useEffect(() => {
+        getNickname();
+    }, [])
+
+    const getNickname = async () => {
+        try{
+            const response = await axios.get(`${process.env.REACT_APP_SERVER}/users/${userPK}`);
+            setDefaultNickname(response.data.name)
+            setNickname(response.data.name)
+        }catch(err){
+            console.error(err);
+        }
+    }
+
     const onchangeImageUpload = e => {
-        const {files} = e.target;
-        const uploadFile = files[0];
+        const file = e.target.files[0];
+
+        const uploadFile = file;
         const reader = new FileReader();
         reader.readAsDataURL(uploadFile);
-        if(!(uploadFile.type.match("image/png") || uploadFile.type.match("image/jpg") || uploadFile.type.match("image/jpeg"))){
+
+        if(!file){
+            return alert('파일을 선택해주세요.');
+        }
+        console.log(file);
+        if(!(file.type === "image/png" || file.type === "image/jpeg")){
             return alert('이미지 파일만 업로드 가능합니다.');
         }
-        reader.onloadend = ()=> {
-            setProfileImg(reader.result);
+       
+        reader.onload = () => {
+            setImageSrc(reader.result);
         }
+        setProfileImg(file);
     }
 
     const removeProfileImg = () => {
         setProfileImg("/images/edit-info/default-profile-img.png");
+    }
+
+    const setProfile = async () => {
+        const image = profileImg === "/images/edit-info/default-profile-img.png" ? null : profileImg;
+        try{
+            const formData = new FormData();
+            formData.append('image', image);
+            formData.append('name', nickname);
+
+            const response = await axios.patch(`${process.env.REACT_APP_SERVER}/users/${userPK}`, formData)
+            console.log(response);
+            movePage('/mypage');
+        }catch(err){
+            console.error(err);
+        }
+    }
+
+    const resetProfile = () => {
+        setImageSrc(defaultProfile);
+        setNickname(defaultNickname);
     }
 
     return(
@@ -35,7 +88,7 @@ function EditProfile() {
                 <div className={styles['profile-img-title']}>프로필 사진</div>
                 <div className={styles['set-profile']}>
                     <div className={styles['set-profile-img']}>
-                        <img src={profileImg}/>
+                        <img src={imageSrc}/>
                     </div>
                     <div className={styles['edit-profile-btns']}>
                         <div className={styles['edit-profile']} onClick={() => fileInput.current.click()}>사진 변경</div>
@@ -45,15 +98,18 @@ function EditProfile() {
                 </div>
                 <div className={styles['nickname-title']}>닉네임</div>
                 <div className={styles['set-nickname']}>
-                    <input placeholder="ex) 피리부는 코끼리" className={styles['nickname-input']}/>
+                    <input placeholder="ex) 피리부는 코끼리"
+                        className={styles['nickname-input']}
+                        value={nickname}
+                        onChange={e => setNickname(e.target.value)}/>
                 </div>
             </div>
             <input type="file" accept=".png, .jpg, .jpeg" style={{display: 'none'}} ref={fileInput}
                 onChange = {onchangeImageUpload}/>
 
             <div className={styles['apply-btns']}>
-                <div>적용</div>
-                <div>취소</div>
+                <div onClick={setProfile}>적용</div>
+                <div onClick={resetProfile}>취소</div>
             </div>
         </>
     )
