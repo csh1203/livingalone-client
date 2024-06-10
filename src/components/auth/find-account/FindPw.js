@@ -22,7 +22,7 @@ function FindPw({ scope, setScope, setShowPw }) {
 
     const changeUserPw = async () => {
         try{
-            const response = await axios.put(`http://127.0.0.1:3001/users/password`, req)
+            const response = await axios.put(`${process.env.REACT_APP_SERVER}/users/password`, req)
             console.log(response.data);
             setShowPw(email.email);
         }catch(err){
