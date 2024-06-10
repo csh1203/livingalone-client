@@ -35,8 +35,15 @@ function ChangePw({ setShowChangePw }){
             setActivationBtn(false);
     }, [currectPw.content, newPw.content, checkPw.content, isSamePw])
 
+    const handleClickOutside = (e) => {
+        if (e.target.id === "pw-popup-shadow") {
+            setShowChangePw(false);
+        }
+    }
+
+
     return(
-        <div className={styles['popup-shadow']}>
+        <div className={styles['popup-shadow']} id="pw-popup-shadow" onClick={handleClickOutside}>
             <div className={styles['popup-box']}>
                 <div className={styles['title']}>비밀번호 변경</div>
                 <div className={styles['change-pw-box']}>
