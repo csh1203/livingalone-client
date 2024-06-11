@@ -13,14 +13,14 @@ import MyQnA from "./MyQnA";
 
 function BasicProfileMain() {
     const movePage = useNavigate();
-    
     const [ activeButtonIndex, setActiveButtonIndex ] = useState(null);
     const [ showLogoutAlert, setShowLogoutAlert ] = useState(false);
     const [ showCancelPopup, setShowCancelPopup ] = useState(false);
-
-    const [userInfo, setUserInfo] = useState(null);
-    const [usersComments, setUsersComments] = useState(0);
-    const [userQnA, setUserQnA] = useState(0);
+    const [ userInfo, setUserInfo ] = useState(null);
+    const [ commentsLength, setCommentsLength ] = useState(0);
+    const [ commentPageLength, setCommentPageLength ] = useState(0);
+    const [ qnaLength, setQnaLength ] = useState(0);
+    const [ qnaPageLength, setQnaPageLength ] = useState(0);
 
     // Redux 스토어에서 유저의 PK 값을 가져옴
     const userPK = useSelector(state => state.user.userPK);
@@ -48,8 +48,9 @@ function BasicProfileMain() {
 
     const fetchCommentInfo = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_SERVER}/answers/list/${userPK}`);
-            setUsersComments(response.data.data);
+            const response = await axios.get(`${process.env.REACT_APP_SERVER}/answers/list/${userPK}?page=1`);
+            setCommentPageLength(response.data.totalPages)
+            setCommentsLength(response.data.totalAnswerCount);
         } catch (error) {
             console.error('댓글 요청 실패:', error);
         }
@@ -57,8 +58,9 @@ function BasicProfileMain() {
 
     const fetchQnAInfo = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_SERVER}/questions/list/${userPK}`);
-            setUserQnA(response.data)
+            const response = await axios.get(`${process.env.REACT_APP_SERVER}/questions/list/${userPK}?page=1`);
+            setQnaPageLength(response.data.totalPages);
+            setQnaLength(response.data.totalQuestions);
         } catch (error) {
             console.error('댓글 요청 실패:', error);
         }
@@ -68,7 +70,7 @@ function BasicProfileMain() {
         <div className={styles['main']}>
             <div className={styles['profile-box']}>
                 <div className={styles['profile-image-wrap']}>
-                    <img className={styles['profile-image']} src="/images/basicProfile.png"/>
+                    <img className={styles['profile-image']} src={(userInfo && userInfo.image)? userInfo.image : "/images/basicProfile.png"}/>
                     <Link to="/mypage/editInfo">
                         <div className={styles['edit-button']}>
                             <Icon icon="uil:pen" className={styles['edit-button-icon']}/>
@@ -82,14 +84,14 @@ function BasicProfileMain() {
                         <img src={activeButtonIndex === 0 ? '/images/mypage-icon/my_qna_select.svg' : '/images/mypage-icon/my_qna.svg'} />
                         <div className={styles['active-label']} style={{ color: activeButtonIndex === 0 ? '#036CE7' : '#1C1C1E'}}>내가 작성한 Q&A</div>
                     </div>
-                    <div className={styles['count']}>{userQnA.length}개</div>
+                    <div className={styles['count']}>{qnaLength}개</div>
                 </div>
                 <div className={styles['users-active']} onClick={() => setActiveButtonIndex(1)}>
                     <div className={styles['active-label-box']}>
                         <img src={activeButtonIndex === 1 ? '/images/mypage-icon/my_comment_select.svg' : '/images/mypage-icon/my_comment.svg'} />
                         <div className={styles['active-label']} style={{ color: activeButtonIndex === 1 ? '#036CE7' : '#1C1C1E'}}>내가 쓴 댓글</div>
                     </div>
-                    <div className={styles['count']}>{usersComments.length}개</div>
+                    <div className={styles['count']}>{commentsLength}개</div>
                 </div>
                 <hr className={styles['divider']}/>
                 <div className={styles['mention']}>자취 모르는게 있다면?</div>
@@ -103,7 +105,9 @@ function BasicProfileMain() {
 
             <div>
                 {activeButtonIndex === null ? <></> : 
-                 activeButtonIndex ? <MyComment usersComments={usersComments}/> : <MyQnA userQnA={userQnA} />}
+                 activeButtonIndex ? 
+                    <MyComment commentsLength={commentsLength} commentPageLength={commentPageLength}/> :
+                    <MyQnA qnaLength={qnaLength} qnaPageLength={qnaPageLength}/>}
             </div>
 
             { showLogoutAlert && <LogoutAlertBox setShowLogoutAlert={setShowLogoutAlert}/> }
