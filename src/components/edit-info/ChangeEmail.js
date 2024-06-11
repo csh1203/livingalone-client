@@ -5,7 +5,8 @@ import '../../css/common/Style.css';
 import styles from '../../css/edit-info/ChangeEmail.module.css'
 
 function ChangeEmail({ setShowChangeEmail }) {
-    const [ activationBtn, setActivationBtn ] = useState(true);
+    const [ activationBtn, setActivationBtn ] = useState(false);
+    const [ recentEmail, setRecentEmail ] = useState('');
     const [ email, setEmail ] = useState('');
 
     const userPK = useSelector(state => state.user.userPK);
@@ -17,7 +18,7 @@ function ChangeEmail({ setShowChangeEmail }) {
     const getEmail = async () => {
         try{    
             const response = await axios.get(`${process.env.REACT_APP_SERVER}/users/${userPK}`);
-            setEmail(response.data.email)
+            setRecentEmail(response.data.email)
         }catch(err){
             console.error(err);
         }
@@ -38,6 +39,20 @@ function ChangeEmail({ setShowChangeEmail }) {
         }
     }
 
+    const editEmail = async() => {
+        console.log(email);
+        try{
+            const response = await axios.patch(`${process.env.REACT_APP_SERVER}/users/email/${userPK}`, {
+                new_email: email
+            })
+
+            console.log(response);
+            setShowChangeEmail(false);
+        }catch(err){
+            console.error(err);
+        }
+    }
+
     return(
         <div className={styles['popup-shadow']} id="email-popup-shadow" onClick={handleClickOutside}>
             <div className={styles['popup-box']}>
@@ -45,12 +60,12 @@ function ChangeEmail({ setShowChangeEmail }) {
                 <div className={styles['email-info-box']}>
                     <div className={styles['current-email-box']}>
                         <div className={styles['current-email-title']}>현재 이메일 주소: </div>
-                        <div className={styles['current-email']}>holosergi@gmail.com</div>
+                        <div className={styles['current-email']}>{recentEmail}</div>
                     </div>
                     <input className={styles['new-email-input']} placeholder='새 이메일 주소' value={email} onChange={onChangeEmail}/>
                 </div>
                 <div className={ activationBtn ? `${styles['apply-btn']} ${styles['activation-apply-btn']}` :  `${styles['apply-btn']}`}
-                    onClick={() => activationBtn ? setShowChangeEmail(false) : <></>}>완료</div>
+                    onClick={() => activationBtn ? editEmail() : <></>}>완료</div>
             </div>
         </div>
     )
