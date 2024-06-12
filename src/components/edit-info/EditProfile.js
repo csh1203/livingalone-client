@@ -24,6 +24,12 @@ function EditProfile() {
     const getNickname = async () => {
         try{
             const response = await axios.get(`${process.env.REACT_APP_SERVER}/users/${userPK}`);
+
+            if(response.data.image) {
+                setProfileImg(response.data.image);
+                setImageSrc(response.data.image);
+            }
+
             setDefaultNickname(response.data.name)
             setNickname(response.data.name)
         }catch(err){
