@@ -1,35 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import axios from "axios";
 import '../../css/common/Style.css';
 import styles from '../../css/profile/MyQnA.module.css'
 import { Icon } from '@iconify/react';
 import MyQnAItem from './MyQnAItem'
 
-function MyQnA() {
-    const [currentPage, setCurrentPage] = useState(1);
+function MyQnA({ qnaLength, qnaPageLength }) {
+    const [ userQnA, setUserQnA ] = useState([]);
+    const [ currentPage, setCurrentPage ] = useState(1);
+    
+    const userPK = useSelector(state => state.user.userPK);
 
-    const posts = [
-        <MyQnAItem key={1} />,
-        <MyQnAItem key={2} />,
-        <MyQnAItem key={3} />,
-        <MyQnAItem key={4} />,
-        <MyQnAItem key={5} />,
-        <MyQnAItem key={6} />,
-        <MyQnAItem key={7} />,
-        <MyQnAItem key={8} />,
-        <MyQnAItem key={9} />,
-        <MyQnAItem key={10} />,
-        <MyQnAItem key={11} />,
-    ];
+    useEffect(() => {
+        getQnA();
+    }, [currentPage])
 
-    const postsPerPage = 4;
-    const indexOfLastPost = currentPage * postsPerPage;
-    const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
-    const pageLength = Math.ceil(posts.length / postsPerPage);
-    const qnaLength = posts.length;
-
-    const onClickPrevPage = () => currentPage === 1 ? setCurrentPage(pageLength) : setCurrentPage(currentPage - 1);
-    const onClickNextPage = () => currentPage === pageLength ? setCurrentPage(1) : setCurrentPage(currentPage + 1);
+    const getQnA = async() => {
+        try{
+            const response = await axios.get(`${process.env.REACT_APP_SERVER}/questions/list/${userPK}?page=${currentPage}`);
+            console.log(response.data.data);
+            setUserQnA(response.data.data);
+        }catch(err){
+            console.error(err);
+        }
+    }
 
     return(
         <div className={styles['qna-box']}>
@@ -39,19 +34,19 @@ function MyQnA() {
             </div>
 
             <div className={styles['qna-list']}>
-                {currentPosts.map((post, index) => (
-                    <div key={index}>{post}</div>
-                ))}
+                {
+                    userQnA.map(qna => <MyQnAItem qna={qna}/>)
+                }
             </div>
 
             <div className={styles['qna-pages']}>
                 <Icon icon="iconamoon:arrow-up-2-light" className={styles['prev-btn']} 
-                    onClick={onClickPrevPage}/>
+                    onClick={() => {currentPage > 1 && setCurrentPage(currentPage - 1)}}/>
                 <div className={styles['current-page']}>{currentPage}</div>
                 <div className={styles['slash']}>/</div>
-                <div className={styles['all-pages']}>{pageLength}</div>
+                <div className={styles['all-pages']}>{qnaPageLength}</div>
                 <Icon icon="iconamoon:arrow-up-2-light" className={styles['next-btn']}
-                    onClick={onClickNextPage}/>
+                    onClick={() => {currentPage < qnaPageLength && setCurrentPage(currentPage + 1)}}/>
             </div>
         </div>
     )

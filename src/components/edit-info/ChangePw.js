@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import '../../css/common/Style.css';
 import styles from '../../css/edit-info/ChangePw.module.css'
+import axios from 'axios';
 
 function ChangePw({ setShowChangePw }){
     const [ activationBtn, setActivationBtn ] = useState(false);
@@ -19,6 +21,8 @@ function ChangePw({ setShowChangePw }){
         content: '',
         show: false
     })
+
+    const userPK = useSelector(state => state.user.userPK);
 
     const showPw = (isShow) => {
         return isShow ? '/images/edit-info/icon/open-eye.png' : '/images/edit-info/icon/close-eye.png'
@@ -41,6 +45,24 @@ function ChangePw({ setShowChangePw }){
         }
     }
 
+    const editPw = async () => {
+        try{
+            if(newPw.content !== checkPw.content){
+                return alert('비밀번호가 일치하지 않습니다.')
+            }
+
+            const req = {
+                newPassword: newPw.content,
+                newPasswordConfirmation: checkPw.content
+            }
+
+            const response = await axios.put(`${process.env.REACT_APP_SERVER}/users/${userPK}/password`, req);
+            console.log(response);
+            setShowChangePw(false);
+        }catch(err){
+            console.error(err); 
+        }
+    }
 
     return(
         <div className={styles['popup-shadow']} id="pw-popup-shadow" onClick={handleClickOutside}>
@@ -72,7 +94,7 @@ function ChangePw({ setShowChangePw }){
                     </div>
                 </div>
                 <div className={ activationBtn ? `${styles['apply-btn']} ${styles['activation-apply-btn']}` :  `${styles['apply-btn']}`}
-                    onClick={() => activationBtn ? setShowChangePw(false) : <></>}>완료</div>
+                    onClick={() => activationBtn ? editPw() : <></>}>완료</div>
             </div>
         </div>
     )
