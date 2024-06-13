@@ -52,6 +52,7 @@ function ChangePw({ setShowChangePw }){
             }
 
             const req = {
+                currentPassword: currectPw.content,
                 newPassword: newPw.content,
                 newPasswordConfirmation: checkPw.content
             }
@@ -60,7 +61,10 @@ function ChangePw({ setShowChangePw }){
             console.log(response);
             setShowChangePw(false);
         }catch(err){
-            console.error(err); 
+            console.error(err);
+            if(err.response.status === 400){
+                alert(err.response.data.message)
+            }
         }
     }
 
