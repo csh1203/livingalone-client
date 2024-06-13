@@ -27,7 +27,7 @@ function EditProfile() {
 
             if(response.data.image) {
                 setProfileImg(response.data.image);
-                setImageSrc(response.data.image);
+                setImageSrc(`${process.env.REACT_APP_SERVER}${response.data.image}`);
             }
 
             setDefaultNickname(response.data.name)
@@ -60,11 +60,13 @@ function EditProfile() {
 
     const removeProfileImg = () => {
         setProfileImg("/images/edit-info/default-profile-img.png");
+        setImageSrc("/images/edit-info/default-profile-img.png");
     }
 
     const setProfile = async () => {
-        const image = profileImg === "/images/edit-info/default-profile-img.png" ? null : profileImg;
         try{
+            const image = profileImg === "/images/edit-info/default-profile-img.png" ? null : profileImg;
+
             const formData = new FormData();
             formData.append('image', image);
             formData.append('name', nickname);
@@ -74,6 +76,9 @@ function EditProfile() {
             movePage('/mypage');
         }catch(err){
             console.error(err);
+            if(err.response.status === 400){
+                alert(err.response.data.message)
+            }
         }
     }
 

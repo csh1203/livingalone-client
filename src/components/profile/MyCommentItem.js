@@ -7,7 +7,7 @@ import { Icon } from '@iconify/react';
 function MyCommentItem({ comment }) {
     console.log(comment);
     return(
-        <Link to={`/qna/post`}>
+        <Link to={`/qna/post/${comment.question_pk}`}>
             <div className={styles['comment-item-box']}>
                 <div className={styles['comment-item-title']}>
                     {comment.answer.replace(/<[^>]*>/g, '')}
