@@ -41,6 +41,7 @@ function BasicProfileMain() {
         try {
             const response = await axios.get(`${process.env.REACT_APP_SERVER}/users/${userPK}`);
             setUserInfo(response.data);
+            console.log(response.data);
         } catch (error) {
             console.error('사용자 정보 요청 실패:', error);
         }
@@ -51,6 +52,7 @@ function BasicProfileMain() {
             const response = await axios.get(`${process.env.REACT_APP_SERVER}/answers/list/${userPK}?page=1`);
             setCommentPageLength(response.data.totalPages)
             setCommentsLength(response.data.totalAnswerCount);
+            
         } catch (error) {
             console.error('댓글 요청 실패:', error);
         }
@@ -70,7 +72,9 @@ function BasicProfileMain() {
         <div className={styles['main']}>
             <div className={styles['profile-box']}>
                 <div className={styles['profile-image-wrap']}>
-                    <img className={styles['profile-image']} src={(userInfo && userInfo.image)? userInfo.image : "/images/basicProfile.png"}/>
+                    <img className={styles['profile-image']} src={(userInfo && userInfo.image)? 
+                        `${process.env.REACT_APP_SERVER}${userInfo.image}` :
+                        "/images/basicProfile.png"}/>
                     <Link to="/mypage/editInfo">
                         <div className={styles['edit-button']}>
                             <Icon icon="uil:pen" className={styles['edit-button-icon']}/>
