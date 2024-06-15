@@ -24,13 +24,13 @@ function MainBanner() {
                     iconUrl="./images/banner_icons/calc_icon.png"
                     subTitle="비용계산기"
                     mainTitle="자취, 얼마나 들까?"
-                    linkUrl="#"
+                    linkUrl="/CostCalculator"
                 />
                 <BannerCard
                     iconUrl="./images/banner_icons/book_icon.png"
                     subTitle="자취정보"
                     mainTitle="자취에 대해서 알고싶다면?"
-                    linkUrl="#"
+                    linkUrl="/articles"
                 />
             </div>
         </div>
