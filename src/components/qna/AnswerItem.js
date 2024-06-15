@@ -3,16 +3,11 @@ import { useCallback, useState } from 'react';
 import '../../css/common/Style.css';
 import styles from '../../css/qna/AnswerItem.module.css';
 
-function AnswerItem({ index, answerUserPk, name, content, date, setIsUpdate }) {
+function AnswerItem({ index, answerUserPk, userProfile, name, content, date, setIsUpdate }) {
 
     const [isVisible, setIsVisible] = useState(false)
-    const [loading, setLoading] = useState(false)
 
     const currentUser = localStorage.getItem('userPK');
-
-    const handleLineClick = () => {
-        setIsVisible(!isVisible);
-    };
 
     const deleteAnswer = useCallback(async () => {
         try {
@@ -23,13 +18,12 @@ function AnswerItem({ index, answerUserPk, name, content, date, setIsUpdate }) {
             console.error(error)
         }
     }, [])
-
-    console.log(process.env.REACT_APP_BASIC_PROFILE)
+    console.log(process.env.REACT_APP_SERVER + userProfile)
     return (
         <div className={styles['container']}>
             <div className={styles['profile-dots']}>
                 <div className={styles['profile-name']}>
-                    <img src={process.env.REACT_APP_BASIC_PROFILE} className={styles['profile']} />
+                    <img src={userProfile ? process.env.REACT_APP_SERVER + userProfile : '/images/basicProfile.png'} className={styles['profile']} />
                     <p className={styles['name']}>
                         {name}
                     </p>
