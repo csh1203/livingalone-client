@@ -52,7 +52,7 @@ function BasicProfileMain() {
             const response = await axios.get(`${process.env.REACT_APP_SERVER}/answers/list/${userPK}?page=1`);
             setCommentPageLength(response.data.totalPages)
             setCommentsLength(response.data.totalAnswerCount);
-            
+
         } catch (error) {
             console.error('댓글 요청 실패:', error);
         }
@@ -72,7 +72,7 @@ function BasicProfileMain() {
         <div className={styles['main']}>
             <div className={styles['profile-box']}>
                 <div className={styles['profile-image-wrap']}>
-                    <img className={styles['profile-image']} src={(userInfo && userInfo.image)? 
+                    <img className={styles['profile-image']} src={(userInfo && userInfo.image)?
                         `${process.env.REACT_APP_SERVER}${userInfo.image}` :
                         "/images/basicProfile.png"}/>
                     <Link to="/mypage/editInfo">
@@ -99,8 +99,8 @@ function BasicProfileMain() {
                 </div>
                 <hr className={styles['divider']}/>
                 <div className={styles['mention']}>자취 모르는게 있다면?</div>
-                <button className={styles['to-info']}>자취정보 확인하기</button>
-                <button className={styles['to-qna']}>Q&A 보러가기</button>
+                <button onClick={() => movePage('/articles')} className={styles['to-info']}>자취정보 확인하기</button>
+                <button onClick={() => movePage('/qna')} className={styles['to-qna']}>Q&A 보러가기</button>
                 <div className={styles['logs']}>
                     <div className={styles['log-item']} onClick={() => setShowLogoutAlert(true)}>로그아웃</div>
                     <div className={styles['log-item']} onClick={() => setShowCancelPopup(true)}>계정탈퇴</div>
@@ -108,8 +108,8 @@ function BasicProfileMain() {
             </div>
 
             <div>
-                {activeButtonIndex === null ? <></> : 
-                 activeButtonIndex ? 
+                {activeButtonIndex === null ? <></> :
+                 activeButtonIndex ?
                     <MyComment commentsLength={commentsLength} commentPageLength={commentPageLength}/> :
                     <MyQnA qnaLength={qnaLength} qnaPageLength={qnaPageLength}/>}
             </div>

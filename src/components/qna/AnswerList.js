@@ -18,13 +18,12 @@ function AnswerList() {
 
     useEffect(() => {
         fetchData()
-        console.log(userPK)
+        console.log(answerList[0].user.image)
     }, [isUpdated])
 
     const fetchData = async () => {
         try {
             const response = await axios.get(`${process.env.REACT_APP_SERVER}/answers/question/${id}`)
-            console.log(response.data.data)
             setAnswerList(response.data.data)
         } catch (error) {
             console.error(error)
@@ -88,6 +87,7 @@ function AnswerList() {
                         key={answer.id}
                         index={answer.answer_pk}
                         answerUserPk={answer.user_pk}
+                        userProfile={answer.user.image}
                         name={answer.user.name}
                         content={answer.answer}
                         date={answer.createdAt.split('T')[0]}
