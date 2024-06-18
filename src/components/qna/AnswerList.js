@@ -18,7 +18,6 @@ function AnswerList() {
 
     useEffect(() => {
         fetchData()
-        console.log(answerList[0].user.image)
     }, [isUpdated])
 
     const fetchData = async () => {
