@@ -33,16 +33,19 @@ function AllQnABoard() {
     }
 
     useEffect(() => {
-        fetchData();
         tagging();
-    }, [page])
+        fetchData();
+    }, [page, tag])
 
     const fetchData = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_SERVER}/questions/list/page?page=${page}`);
+            let url = `${process.env.REACT_APP_SERVER}/questions/list/page?page=${page}`;
+            if (tag !== '전체 게시글') {
+                url += `&tag=${tag}`;
+            }
+            const response = await axios.get(url);
             setData(response.data.questions);
-            console.log(response)
-            setPagination(response.data.pagination)
+            setPagination(response.data.pagination);
         } catch (error) {
             console.error(error);
         }
@@ -77,6 +80,7 @@ function AllQnABoard() {
                         : 'loading'
                 }
             </div>
+            <img className={styles['circle']} src="/images/circle.png" />
         </div>
     )
 }
