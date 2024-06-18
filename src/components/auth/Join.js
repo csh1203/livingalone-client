@@ -7,7 +7,6 @@ import InputContainer from './basic/InputContainer';
 
 function Join() {
     const movePage = useNavigate();
-    const imgUrl = "https://cdn-icons-png.freepik.com/256/10302/10302971.png?semt=ais_hybrid";
 
     // form data
     const [id, setId] = useState("");
@@ -74,7 +73,7 @@ function Join() {
                 name: name,
                 password: password,
                 email: email,
-                image: imgUrl
+                image: null
             };
 
             const response = await axios.post(`${process.env.REACT_APP_SERVER}/users/signup`, req);
