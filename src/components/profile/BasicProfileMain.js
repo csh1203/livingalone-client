@@ -41,10 +41,7 @@ function BasicProfileMain() {
         try {
             const response = await axios.get(`${process.env.REACT_APP_SERVER}/users/${userPK}`);
             console.log(response);
-            setUserInfo({
-                ...response.data,
-                image: response.data.image === "https://cdn-icons-png.freepik.com/256/10302/10302971.png?semt=ais_hybrid" ? null : response.data.image
-            });
+            setUserInfo(response.data);
             console.log(response.data);   
         } catch (error) {
             console.error('사용자 정보 요청 실패:', error);

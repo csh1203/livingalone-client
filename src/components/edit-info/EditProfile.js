@@ -25,7 +25,7 @@ function EditProfile() {
         try{
             const response = await axios.get(`${process.env.REACT_APP_SERVER}/users/${userPK}`);
             console.log(response.data)
-            if(response.data.image !== "https://cdn-icons-png.freepik.com/256/10302/10302971.png?semt=ais_hybrid") {
+            if(response.data.image) {
                 setProfileImg(response.data.image);
                 setImageSrc(`${process.env.REACT_APP_SERVER}${response.data.image}`);
             }
