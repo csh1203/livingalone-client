@@ -45,7 +45,6 @@ function AllQnABoard() {
             }
             const response = await axios.get(url);
             setData(response.data.questions);
-            console.log(response);
             setPagination(response.data.pagination);
         } catch (error) {
             console.error(error);
@@ -81,6 +80,7 @@ function AllQnABoard() {
                         : 'loading'
                 }
             </div>
+            <img className={styles['circle']} src="/images/circle.png" />
         </div>
     )
 }
