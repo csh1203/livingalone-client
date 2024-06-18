@@ -80,6 +80,7 @@ function AllQnABoard() {
                         : 'loading'
                 }
             </div>
+            <img className={styles['circle']} src="/images/circle.png" />
         </div>
     )
 }
