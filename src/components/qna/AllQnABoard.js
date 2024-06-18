@@ -45,7 +45,6 @@ function AllQnABoard() {
             }
             const response = await axios.get(url);
             setData(response.data.questions);
-            console.log(response);
             setPagination(response.data.pagination);
         } catch (error) {
             console.error(error);
